@@ -9,8 +9,10 @@ import {
     Input,
     Row,
     Col,
-    CustomInput,
+    MDBInput
 } from "reactstrap";
+
+import './new-user.css'
   
 
 export default function CreateUser() {
@@ -58,7 +60,7 @@ export default function CreateUser() {
                                                 <Input
                                                 onKeyUp={(e)=> console.log("ok")}
                                                 defaultValue=""
-                                                placeholder="Ismi"
+                                                placeholder="Boburmirzo"
                                                 type="text"
                                                 />
                                             </FormGroup>
@@ -69,78 +71,51 @@ export default function CreateUser() {
                                                 <Input
                                                 onKeyUp={(e)=>console.log("ok")}
                                                 defaultValue=""
-                                                placeholder="Familiya"
-                                                type="text"
-                                                />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col className="pr-md-3 mx-auto" color="primary" md="6">
-                                        <FormGroup>
-                                            <label>Rasm:</label>
-                                            <CustomInput
-                                            type="file"
-                                            id="FileBrowser"
-                                            name="customFile"
-                                            onChange={handleFileChange}
-                                            label={filename.fileName || 'Rasmingizni yuklang'}
-                                            invalid={filename.invalidFile} />
-                                        </FormGroup>
-                                        </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
-                                            <FormGroup>
-                                                <label>Familiya:</label>
-                                                <Input
-                                                onKeyUp={(e)=>console.log("ok")}
-                                                defaultValue=""
-                                                placeholder="Familiya"
+                                                placeholder="Negmatov"
                                                 type="text"
                                                 />
                                             </FormGroup>
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
-                                                <label>Ismi:</label>
+                                                <label>Tug'ulgan kuni:</label>
                                                 <Input
                                                 onKeyUp={(e)=> console.log("ok")}
                                                 defaultValue=""
-                                                placeholder="Ismi"
-                                                type="text"
+                                                placeholder="19/07/2000"
+                                                type="date"
                                                 />
                                             </FormGroup>
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
-                                                <label>Familiya:</label>
+                                                <label>Telefon raqam:</label>
                                                 <Input
                                                 onKeyUp={(e)=>console.log("ok")}
                                                 defaultValue=""
-                                                placeholder="Familiya"
+                                                placeholder="+998998616951"
                                                 type="text"
                                                 />
                                             </FormGroup>
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
-                                                <label>Ismi:</label>
+                                                <label>Mentor ismi:</label>
                                                 <Input
                                                 onKeyUp={(e)=> console.log("ok")}
                                                 defaultValue=""
-                                                placeholder="Ismi"
+                                                placeholder="Malika"
                                                 type="text"
                                                 />
                                             </FormGroup>
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
-                                            <FormGroup>
-                                                <label>Familiya:</label>
-                                                <Input
-                                                onKeyUp={(e)=>console.log("ok")}
-                                                defaultValue=""
-                                                placeholder="Familiya"
-                                                type="text"
-                                                />
+                                            <FormGroup className="d-flex flex-column">
+                                                <label>Dars haqida hulosa:</label>
+                                                <textarea className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3"></textarea>
                                             </FormGroup>
                                         </Col>
+                                        
                                        <Row className="mx-auto">
                                             <Col className="pr-md-3" md="6">
                                                 <Button className="btn-fill" color="primary" type="submit">
@@ -158,3 +133,18 @@ export default function CreateUser() {
         </>
     )
 }
+
+
+
+ {/* <Col className="pr-md-3 mx-auto" color="primary" md="6">
+<FormGroup>
+    <label>Rasm:</label>
+    <CustomInput
+    type="file"
+    id="FileBrowser"
+    name="customFile"
+    onChange={handleFileChange}
+    label={filename.fileName || 'Rasmingizni yuklang'}
+    invalid={filename.invalidFile} />
+</FormGroup>
+</Col> */}
