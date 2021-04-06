@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 
-import AdminLayout from "layouts/Admin/Admin.js"
+import App from "app"
 
 import "assets/scss/black-dashboard-react.scss"
 import "assets/demo/demo.css"
@@ -12,14 +12,15 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper"
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper"
 
+import { ApiProvider } from 'api/api'
+
 ReactDOM.render(
   <ThemeContextWrapper>
     <BackgroundColorWrapper>
       <BrowserRouter>
-        <Switch>
-          <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-          <Redirect from="/" to="/admin/dashboard" />
-        </Switch>
+        <ApiProvider>
+          <App />
+        </ApiProvider>
       </BrowserRouter>
     </BackgroundColorWrapper>
   </ThemeContextWrapper>,

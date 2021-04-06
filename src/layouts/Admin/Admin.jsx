@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
-import routes from "routes.js";
+import AdminNavbar from "components/Navbars/AdminNavbar";
+import Sidebar from "components/Sidebar/Sidebar";
+import routes from "routes";
 
 import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 
 var ps;
 
-function Admin(props) {
+function Admin() {
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -80,14 +80,13 @@ function Admin(props) {
   };
   return (
     <BackgroundColorContext.Consumer>
-      {({ color, changeColor }) => (
+      {({ color }) => (
         <React.Fragment>
           <div className="wrapper">
             <Sidebar
               routes={routes}
               logo={{
-                outterLink: "https://www.creative-tim.com/",
-                text: "Creative Tim",
+                text: "Avlod21",
                 imgSrc: logo,
               }}
               toggleSidebar={toggleSidebar}
@@ -100,7 +99,7 @@ function Admin(props) {
               />
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from="*" to="/admin/dashboard" />
+                <Redirect from="/" to="/admin/dashboard" />
               </Switch>
             </div>
           </div>

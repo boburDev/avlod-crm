@@ -19,7 +19,7 @@ function Tables() {
 	useEffect(()=> {
 		;(async()=>{
 			try {
-				const res = await axios.get('http://192.168.43.4:4000/')
+				const res = await axios.get('')
 				const data = res.data
 
 				setAdmins(data.admins)
