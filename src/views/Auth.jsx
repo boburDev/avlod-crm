@@ -26,7 +26,7 @@ export default function Auth() {
 
     return(
         <>
-            <div className="container">
+            <div className="container pt-5">
                 <Row className="mt-5">
                     <Col md="6" className="mt-5 mx-auto">
                         <Card>
