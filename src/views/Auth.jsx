@@ -20,6 +20,9 @@ export default function Auth() {
 
     function LoginForm(e) {
         e.preventDefault()
+
+        window.location.href = '/admin/dashboard'
+        
         console.log(username, password)
     }
 
