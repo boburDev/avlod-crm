@@ -110,7 +110,7 @@ function UserProfile() {
                     </Col>
                   </Row>
                   <Row>
-                    <Col className="pr-md-1" md="4">
+                    <Col className="pr-md-1" md="6">
                       <FormGroup>
                         <label>City</label>
                         <Input
@@ -120,7 +120,7 @@ function UserProfile() {
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="px-md-1" md="4">
+                    <Col className="px-md-1" md="6">
                       <FormGroup>
                         <label>Country</label>
                         <Input
@@ -128,12 +128,6 @@ function UserProfile() {
                           placeholder="Country"
                           type="text"
                         />
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-md-1" md="4">
-                      <FormGroup>
-                        <label>Postal Code</label>
-                        <Input placeholder="ZIP Code" type="number" />
                       </FormGroup>
                     </Col>
                   </Row>

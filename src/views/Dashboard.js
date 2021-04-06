@@ -32,7 +32,7 @@ import {
   chartExample5,
 } from "variables/charts.js";
 
-function Dashboard(props) {
+function Dashboard() {
   const [bigChartData, setbigChartData] = React.useState("data1");
   const setBgChartData = (name) => {
     setbigChartData(name);
