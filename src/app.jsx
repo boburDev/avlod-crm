@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom"
 
 import AdminLayout from "layouts/Admin/Admin"
 import LoginLayout from "layouts/Auth/Login"
+import NewUserLayout from "layouts/Forms/new-user"
 
 export default function App() {
     return(
@@ -10,7 +11,8 @@ export default function App() {
         <Switch>
             <Route path="/admin" render={(props) => <AdminLayout {...props} />}/>
             <Route path="/login" render={(props) => <LoginLayout {...props} />} />
-            <Redirect from="/" to="/login" />
+            <Route path="/new-user" render={(props) => <NewUserLayout {...props} />} />
+            <Redirect from="/" to="/new-user" />
         </Switch>
         </>
     )
