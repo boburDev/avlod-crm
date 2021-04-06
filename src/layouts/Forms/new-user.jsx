@@ -36,7 +36,7 @@ export default function CreateUser() {
     function LoginForm(e) {
         e.preventDefault()
 
-        // window.location.href = '/admin/dashboard'
+        window.location.href = '/login'
     }
 
 
