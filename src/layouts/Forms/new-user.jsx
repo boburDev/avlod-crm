@@ -9,23 +9,31 @@ import {
     Input,
     Row,
     Col,
-    MDBInput
+    Label,
+    CardFooter,
+    CustomInput
 } from "reactstrap";
-
+import { useApi } from 'api/api'
+import axios from 'axios'
 import './new-user.css'
-  
 
 export default function CreateUser() {
 
     const [filename, setFilename] = React.useState({ fileName: '', invalidFile: false })
+    const [api] = useApi()
+    const [name,setName] = React.useState()
+    const [surname,setSurname] = React.useState()
+    const [birthday,setBirthday] = React.useState()
+    const [number,setNumber] = React.useState()
+    const [mentor,setMentor] = React.useState()
+    const [taklif,setTaklif] = React.useState()
 
 
     function handleFileChange({target: {files}}) {
         const cancel = !files.length;
         if (cancel) return;
-
         const [{ size, name }] = files;
-        const maxSize = 500000;
+        const maxSize = 200000;
 
         if (size < maxSize) {
         setFilename({ fileName: name, invalidFile: false });
@@ -40,6 +48,24 @@ export default function CreateUser() {
 
         window.location.href = '/login'
     }
+
+
+	React.useEffect(()=> {
+		;(async()=>{
+			try {
+                const newUser = {
+                    id:1
+                }
+
+				const res = await axios.post(api + '/new-user', newUser)
+				const data = res.data
+
+				console.log(data)
+			} catch(err) {
+				console.log(err)
+			}
+		})()
+   },[api])
 
 
     return(
@@ -58,7 +84,7 @@ export default function CreateUser() {
                                             <FormGroup>
                                                 <label>Ismi:</label>
                                                 <Input
-                                                onKeyUp={(e)=> console.log("ok")}
+                                                onKeyUp={(e)=> setName("ok")}
                                                 defaultValue=""
                                                 placeholder="Boburmirzo"
                                                 type="text"
@@ -69,7 +95,7 @@ export default function CreateUser() {
                                             <FormGroup>
                                                 <label>Familiya:</label>
                                                 <Input
-                                                onKeyUp={(e)=>console.log("ok")}
+                                                onKeyUp={(e)=>setSurname("ok")}
                                                 defaultValue=""
                                                 placeholder="Negmatov"
                                                 type="text"
@@ -100,13 +126,14 @@ export default function CreateUser() {
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
-                                                <label>Mentor ismi:</label>
-                                                <Input
-                                                onKeyUp={(e)=> console.log("ok")}
-                                                defaultValue=""
-                                                placeholder="Malika"
-                                                type="text"
-                                                />
+                                                <Label for="exampleSelect">Mentor ismi:</Label>
+                                                <Input type="select" name="select" id="exampleSelect">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                </Input>
                                             </FormGroup>
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
@@ -126,6 +153,20 @@ export default function CreateUser() {
                                     </Row>
                                 </Form>
                             </CardBody>
+                            <CardFooter>
+                                <Col className="pr-md-3 mx-auto" color="primary" md="6">
+                                    <FormGroup>
+                                        <label>Rasm:</label>
+                                        <CustomInput
+                                        type="file"
+                                        id="FileBrowser"
+                                        name="customFile"
+                                        onChange={handleFileChange}
+                                        label={filename.fileName || 'Rasmingizni yuklang'}
+                                        invalid={filename.invalidFile} />
+                                    </FormGroup>
+                                    </Col>
+                            </CardFooter>
                         </Card>
                     </Col>
                 </Row>
@@ -134,17 +175,4 @@ export default function CreateUser() {
     )
 }
 
-
-
- {/* <Col className="pr-md-3 mx-auto" color="primary" md="6">
-<FormGroup>
-    <label>Rasm:</label>
-    <CustomInput
-    type="file"
-    id="FileBrowser"
-    name="customFile"
-    onChange={handleFileChange}
-    label={filename.fileName || 'Rasmingizni yuklang'}
-    invalid={filename.invalidFile} />
-</FormGroup>
-</Col> */}
+// localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYm9idXJtaXJ6byIsInB3IjoiMTIzNDUiLCJzdGF0dXMiOjEsImlhdCI6MTYxNzc2NTUyNiwiZXhwIjoxNjE4MzcwMzI2fQ.xjN0O_QT85OQdOD7lK4KAbM-oMLPsn6HtQcZuG128j4')

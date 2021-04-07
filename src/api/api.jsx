@@ -4,15 +4,21 @@ const Context = React.createContext()
 const ApiProvider = ({children})=>{
 
     const [state, setState] = React.useState('')
-    const isTester = false
+    const isTester = true
 
     React.useEffect(()=>{
+
+        const server = {
+            server_dev: "http://192.168.100.9:4000",
+            server_dep: "https://avlod21.herokuapp.com"
+        }
         if (isTester) {
-            setState('http://192.168.100.9:4000')
-        }else {
-            setState('https://avlod21.herokuapp.com')
+            setState(server.server_dev)
+        } else {
+            setState(server.server_dep)
         }
     }, [isTester])
+
 
 
     const value = {
