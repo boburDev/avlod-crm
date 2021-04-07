@@ -111,8 +111,8 @@ export default function CreateUser() {
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup className="d-flex flex-column">
-                                                <label>Dars haqida hulosa:</label>
-                                                <textarea className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3"></textarea>
+                                                <label>Dars haqida hulosa (Ixtiyoriy):</label>
+                                                <textarea className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3" placeholder="yoki taklifingiz"></textarea>
                                             </FormGroup>
                                         </Col>
                                         
