@@ -21,12 +21,14 @@ export default function CreateUser() {
 
     const [filename, setFilename] = React.useState({ fileName: '', invalidFile: false })
     const [api] = useApi()
-    const [name,setName] = React.useState()
-    const [surname,setSurname] = React.useState()
-    const [birthday,setBirthday] = React.useState()
-    const [number,setNumber] = React.useState()
-    const [mentor,setMentor] = React.useState()
-    const [taklif,setTaklif] = React.useState()
+    const [name,setName] = React.useState('')
+    const [surname,setSurname] = React.useState('')
+    const [birthday,setBirthday] = React.useState('')
+    const [lesson,setLesson] = React.useState('')
+    const [number,setNumber] = React.useState('')
+    const [mentor,setMentor] = React.useState('')
+    const [taklif,setTaklif] = React.useState('')
+    const [fikr,setFikr] = React.useState('')
 
 
     function handleFileChange({target: {files}}) {
@@ -43,30 +45,38 @@ export default function CreateUser() {
     }
 
 
-    function LoginForm(e) {
+    function SignUpForm(e) {
         e.preventDefault()
 
-        window.location.href = '/login'
-    }
-
-
-	React.useEffect(()=> {
-		;(async()=>{
+        ;(async()=>{
+            const newUser = {
+                name,
+                surname,
+                birthday,
+                number,
+                mentor,
+                taklif,
+                lesson,
+                fikr
+            }
+            console.log(newUser);
 			try {
-                const newUser = {
-                    id:1
+
+                if (name.length && surname.length && birthday.length && number.length && mentor.length) {
+                    const res = await axios.post(api + '/new-user', newUser)
+                    const data = res.data
+
+                    console.log(data)
+
+
+                    // window.location.href = '/login'
                 }
-
-				const res = await axios.post(api + '/new-user', newUser)
-				const data = res.data
-
-				console.log(data)
+				
 			} catch(err) {
 				console.log(err)
 			}
 		})()
-   },[api])
-
+    }
 
     return(
         <>
@@ -78,13 +88,13 @@ export default function CreateUser() {
                                 <h3 className="title mb-0">Forma</h3>
                             </CardHeader>
                             <CardBody>
-                                <Form onSubmit={LoginForm}>
+                                <Form onSubmit={SignUpForm}>
                                     <Row className="mx-auto">
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
                                                 <label>Ismi:</label>
                                                 <Input
-                                                onKeyUp={(e)=> setName("ok")}
+                                                onKeyUp={(e)=> setName(e.target.value)}
                                                 defaultValue=""
                                                 placeholder="Boburmirzo"
                                                 type="text"
@@ -95,7 +105,7 @@ export default function CreateUser() {
                                             <FormGroup>
                                                 <label>Familiya:</label>
                                                 <Input
-                                                onKeyUp={(e)=>setSurname("ok")}
+                                                onKeyUp={(e)=>setSurname(e.target.value)}
                                                 defaultValue=""
                                                 placeholder="Negmatov"
                                                 type="text"
@@ -106,7 +116,7 @@ export default function CreateUser() {
                                             <FormGroup>
                                                 <label>Tug'ulgan kuni:</label>
                                                 <Input
-                                                onKeyUp={(e)=> console.log("ok")}
+                                                onKeyUp={(e)=> setBirthday(e.target.value)}
                                                 defaultValue=""
                                                 placeholder="19/07/2000"
                                                 type="date"
@@ -115,9 +125,20 @@ export default function CreateUser() {
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
+                                            <Label for="exampleSelect">Dars soni:</Label>
+                                                <Input type="select" name="select" id="exampleSelect" onChange={e => setLesson(e.target.value)}>
+                                                    <option value="0">Tanlang</option>
+                                                {
+                                                    Array(72).fill('@').map((i,index)=> <option value={index+1} key={index}>{index+1} dars</option>)
+                                                }
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col className="pr-md-3 mx-auto" md="6">
+                                            <FormGroup>
                                                 <label>Telefon raqam:</label>
                                                 <Input
-                                                onKeyUp={(e)=>console.log("ok")}
+                                                onKeyUp={(e)=>setNumber(e.target.value)}
                                                 defaultValue=""
                                                 placeholder="+998998616951"
                                                 type="text"
@@ -127,19 +148,24 @@ export default function CreateUser() {
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup>
                                                 <Label for="exampleSelect">Mentor ismi:</Label>
-                                                <Input type="select" name="select" id="exampleSelect">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <Input type="select" name="select" id="exampleSelect" onChange={e => setMentor(e.target.value)}>
+                                                <option value="0">Mentor tanlang</option>
+                                                <option value="Malika">Malika</option>
+                                                <option value="Ozodbek">Ozodbek</option>
+                                                <option value="Shahobiddin">Shahobiddin</option>
                                                 </Input>
                                             </FormGroup>
                                         </Col>
                                         <Col className="pr-md-3 mx-auto" md="6">
                                             <FormGroup className="d-flex flex-column">
-                                                <label>Dars haqida hulosa (Ixtiyoriy):</label>
-                                                <textarea className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3" placeholder="yoki taklifingiz"></textarea>
+                                                <label>Dars haqida Fikringiz (Ixtiyoriy):</label>
+                                                <textarea onKeyUp={e => setFikr(e.target.value)} className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3" placeholder="..."></textarea>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col className="pr-md-3 mx-auto" md="6">
+                                            <FormGroup className="d-flex flex-column">
+                                                <label>Dars uchun taklif (Ixtiyoriy):</label>
+                                                <textarea onKeyUp={e => setTaklif(e.target.value)} className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3" placeholder="..."></textarea>
                                             </FormGroup>
                                         </Col>
                                         
@@ -153,7 +179,7 @@ export default function CreateUser() {
                                     </Row>
                                 </Form>
                             </CardBody>
-                            <CardFooter>
+                            <CardFooter className="d-none">
                                 <Col className="pr-md-3 mx-auto" color="primary" md="6">
                                     <FormGroup>
                                         <label>Rasm:</label>
