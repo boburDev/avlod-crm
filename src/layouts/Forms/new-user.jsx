@@ -30,7 +30,6 @@ export default function CreateUser() {
     const [taklif,setTaklif] = React.useState('')
     const [fikr,setFikr] = React.useState('')
 
-
     function handleFileChange({target: {files}}) {
         const cancel = !files.length;
         if (cancel) return;
