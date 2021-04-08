@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
     Button,
     Card,
@@ -10,20 +11,36 @@ import {
     Row,
     Col,
 } from "reactstrap";
-  
+import axios from 'axios'
+import { useApi } from 'api/api'
 
 export default function Auth() {
 
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
-
+    const [api] = useApi()
 
     function LoginForm(e) {
         e.preventDefault()
-
-        window.location.href = '/admin/dashboard'
         
-        console.log(username, password)
+
+        ;(async()=>{
+            try {
+                if (username.length && password.length) {
+                    console.log(username, password)
+                    const res = await axios.get(api + '/user', { params: {username, password}})
+                    const data = res.data
+                    localStorage.setItem('access_token', data.token)
+                    window.location.href = '/admin'
+                }
+				
+			} catch(err) {
+				console.log(err)
+			}
+        })()
+        // window.location.href = '/admin/dashboard'
+        
+        
     }
 
 
@@ -32,14 +49,14 @@ export default function Auth() {
             <div className="container pt-5">
                 <Row className="mt-5">
                     <Col md="6" className="mt-5 mx-auto">
-                        <Card>
+                        <Card md="12">
                             <CardHeader className="pt-md-4 mx-auto">
                                 <h3 className="title mb-0">Login</h3>
                             </CardHeader>
                             <CardBody>
                                 <Form onSubmit={LoginForm}>
-                                    <Row className="mx-auto">
-                                        <Col className="pr-md-3 mx-auto" md="8">
+                                    <Row className="mx-auto" md="8">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <label>Username:</label>
                                                 <Input
@@ -50,7 +67,7 @@ export default function Auth() {
                                                 />
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="8">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <label>Password:</label>
                                                 <Input
@@ -61,10 +78,11 @@ export default function Auth() {
                                                 />
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="8">
+                                        <Col className="d-flex justify-content-between align-items-center pr-md-3 mx-auto" md="12">
                                             <Button className="btn-fill" color="primary" type="submit">
                                                 Login
                                             </Button>
+                                            <Link className="ml-5" to="/sign-in">Sign Up </Link>
                                         </Col>
                                     </Row>
                                 </Form>

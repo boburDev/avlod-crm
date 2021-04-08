@@ -21,14 +21,15 @@ export default function CreateUser() {
 
     const [filename, setFilename] = React.useState({ fileName: '', invalidFile: false })
     const [api] = useApi()
+    const [username,setUsername] = React.useState('')
+    const [password,setPassword] = React.useState('')
     const [name,setName] = React.useState('')
     const [surname,setSurname] = React.useState('')
     const [birthday,setBirthday] = React.useState('')
     const [lesson,setLesson] = React.useState('')
     const [number,setNumber] = React.useState('')
     const [mentor,setMentor] = React.useState('')
-    const [taklif,setTaklif] = React.useState('')
-    const [fikr,setFikr] = React.useState('')
+    const [type,setType] = React.useState('')
 
     function handleFileChange({target: {files}}) {
         const cancel = !files.length;
@@ -46,7 +47,6 @@ export default function CreateUser() {
 
     function SignUpForm(e) {
         e.preventDefault()
-
         ;(async()=>{
             const newUser = {
                 name,
@@ -54,23 +54,18 @@ export default function CreateUser() {
                 birthday,
                 number,
                 mentor,
-                taklif,
                 lesson,
-                fikr
+                type,
+                username,
+                password
             }
-            console.log(newUser);
 			try {
-
                 if (name.length && surname.length && birthday.length && number.length && mentor.length) {
                     const res = await axios.post(api + '/new-user', newUser)
                     const data = res.data
-
-                    console.log(data)
-
-
-                    // window.location.href = '/login'
+                    localStorage.setItem('access_token', data.token)
+                    window.location.href = '/admin'
                 }
-				
 			} catch(err) {
 				console.log(err)
 			}
@@ -79,17 +74,17 @@ export default function CreateUser() {
 
     return(
         <>
-            <div className="container pt-5">
+            <div className="container">
                 <Row className="mt-5">
-                    <Col md="12" className="mt-5 mx-auto">
+                    <Col md="12" className="mx-auto">
                         <Card>
-                            <CardHeader className="pt-md-4 mx-auto">
-                                <h3 className="title mb-0">Forma</h3>
+                            <CardHeader className="mx-auto">
+                                <h3 className="title mb-0">Sign In</h3>
                             </CardHeader>
                             <CardBody>
                                 <Form onSubmit={SignUpForm}>
                                     <Row className="mx-auto">
-                                        <Col className="pr-md-3 mx-auto" md="6">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <label>Ismi:</label>
                                                 <Input
@@ -100,7 +95,7 @@ export default function CreateUser() {
                                                 />
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <label>Familiya:</label>
                                                 <Input
@@ -111,7 +106,7 @@ export default function CreateUser() {
                                                 />
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <label>Tug'ulgan kuni:</label>
                                                 <Input
@@ -122,7 +117,7 @@ export default function CreateUser() {
                                                 />
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                             <Label for="exampleSelect">Dars soni:</Label>
                                                 <Input type="select" name="select" id="exampleSelect" onChange={e => setLesson(e.target.value)}>
@@ -133,7 +128,7 @@ export default function CreateUser() {
                                                 </Input>
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <label>Telefon raqam:</label>
                                                 <Input
@@ -144,7 +139,7 @@ export default function CreateUser() {
                                                 />
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
+                                        <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <Label for="exampleSelect">Mentor ismi:</Label>
                                                 <Input type="select" name="select" id="exampleSelect" onChange={e => setMentor(e.target.value)}>
@@ -155,21 +150,40 @@ export default function CreateUser() {
                                                 </Input>
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
-                                            <FormGroup className="d-flex flex-column">
-                                                <label>Dars haqida Fikringiz (Ixtiyoriy):</label>
-                                                <textarea onKeyUp={e => setFikr(e.target.value)} className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3" placeholder="..."></textarea>
+                                        <Col className="pr-md-3 mx-auto" md="12">
+                                            <FormGroup>
+                                                <label>Username:</label>
+                                                <Input
+                                                onKeyUp={(e)=>setUsername(e.target.value)}
+                                                defaultValue=""
+                                                placeholder="username"
+                                                type="text"
+                                                />
+                                            </FormGroup>
+                                        </Col>                                    
+                                        <Col className="pr-md-3 mx-auto" md="12">
+                                            <FormGroup>
+                                                <label>Password:</label>
+                                                <Input
+                                                onKeyUp={(e)=>setPassword(e.target.value)}
+                                                defaultValue=""
+                                                placeholder="password"
+                                                type="text"
+                                                />
+                                            </FormGroup>
+                                        </Col>                                    
+                                        <Col className="pr-md-3 mx-auto" md="12">
+                                            <FormGroup>
+                                                <Label for="exampleSelect">O'qish turi:</Label>
+                                                <Input type="select" name="select" id="exampleSelect" onChange={e => setType(e.target.value)}>
+                                                <option value="0">Tanlang</option>
+                                                <option value="1">Online</option>
+                                                <option value="2">Offline</option>
+                                                </Input>
                                             </FormGroup>
                                         </Col>
-                                        <Col className="pr-md-3 mx-auto" md="6">
-                                            <FormGroup className="d-flex flex-column">
-                                                <label>Dars uchun taklif (Ixtiyoriy):</label>
-                                                <textarea onKeyUp={e => setTaklif(e.target.value)} className="form-control" style={{resize: 'none', backgroundColor: '#27293d', borderColor: '#2b3553', color: '#fff', borderRadius: '8px',outline:'none'}} cols="10" rows="3" placeholder="..."></textarea>
-                                            </FormGroup>
-                                        </Col>
-                                        
                                        <Row className="mx-auto">
-                                            <Col className="pr-md-3" md="6">
+                                            <Col className="pr-md-3" md="12">
                                                 <Button className="btn-fill" color="primary" type="submit">
                                                     Submit
                                                 </Button>
@@ -179,7 +193,7 @@ export default function CreateUser() {
                                 </Form>
                             </CardBody>
                             <CardFooter className="d-none">
-                                <Col className="pr-md-3 mx-auto" color="primary" md="6">
+                                <Col className="pr-md-3 mx-auto" color="primary" md="12">
                                     <FormGroup>
                                         <label>Rasm:</label>
                                         <CustomInput

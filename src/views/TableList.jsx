@@ -32,9 +32,6 @@ function Tables() {
 		})()
    },[])
 
-   useEffect(()=>{
-	   console.log(admins);
-   },[admins])
 
   return (
     <>

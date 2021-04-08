@@ -9,7 +9,7 @@ export default function App() {
     
 
     const accessToken = window.localStorage.getItem('access_token')
-    const [access, setAccess] = React.useState(false)
+    const [access, setAccess] = React.useState(true)
 
 
     React.useEffect(()=>{
@@ -26,14 +26,13 @@ export default function App() {
         access ? (
          <Switch>
             <Route path="/admin" render={(props) => <AdminLayout {...props} />}/>
-            <Redirect from="*" to="/admin" />
+            <Route path="/profile" render={(props) => <AdminLayout {...props} />}/>
         </Switch>
         ) :
         (
         <Switch>
-            <Route path="/new-user" render={(props) => <NewUserLayout {...props} />} />
+            <Route path="/sign-in" render={(props) => <NewUserLayout {...props} />} />
             <Route path="/login" render={(props) => <LoginLayout {...props} />} />
-            <Redirect from="/" to="/new-user" />
         </Switch>
         )
         }
