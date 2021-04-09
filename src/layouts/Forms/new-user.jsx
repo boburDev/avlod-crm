@@ -63,8 +63,7 @@ export default function CreateUser() {
                     const res = await axios.post(api + '/new-user', newUser)
                     const data = res.data
                     localStorage.setItem('access_token', data.token)
-                    console.log(data);
-                    // window.location.href = '/admin'
+                    window.location.href = '/user'
                 }
 			} catch(err) {
 				console.log(err)
