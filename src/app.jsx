@@ -9,35 +9,27 @@ import UserLayout from "layouts/UserLayout/profile.jsx"
 export default function App() {
     
 
-    const accessToken = window.localStorage.getItem('access_token')
-    const [access, setAccess] = React.useState(true)
+    // const accessToken = window.localStorage.getItem('access_token')
+    // const [access, setAccess] = React.useState(true)
 
 
-    React.useEffect(()=>{
-        if (accessToken) {
-            setAccess(accessToken)
-        }else {
-            setAccess(false)
-        }
-    },[accessToken])
+    // React.useEffect(()=>{
+    //     if (accessToken) {
+    //         setAccess(accessToken)
+    //     }else {
+    //         setAccess(false)
+    //     }
+    // },[accessToken])
 
     return(
         <>
-        {
-        access ? (
          <Switch>
-            <Route path="/admin" render={(props) => <AdminLayout {...props} />}/>
-            <Route path="/profile" render={(props) => <UserLayout {...props} />}/>
-        </Switch>
-        ) :
-        (
-        <Switch>
-            <Route path="/sign-up" render={(props) => <NewUserLayout {...props} />} />
-            <Route path="/login" render={(props) => <LoginLayout {...props} />} />
+            <Route path="/admin" component={AdminLayout} />
+            <Route path="/profile" component={UserLayout} />
+            <Route path="/login" component={LoginLayout} />
+            <Route path="/sign-up" component={NewUserLayout} />
             <Redirect from='/' to='/sign-up' />
         </Switch>
-        )
-        }
         </>
     )
 }

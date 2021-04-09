@@ -44,7 +44,6 @@ export default function CreateUser() {
         }
     }
 
-
     function SignUpForm(e) {
         e.preventDefault()
         ;(async()=>{
@@ -79,7 +78,7 @@ export default function CreateUser() {
                     <Col md="12" className="mx-auto">
                         <Card>
                             <CardHeader className="mx-auto">
-                                <h3 className="title mb-0">Sign In</h3>
+                                <h3 className="title mb-0">Sign Up</h3>
                             </CardHeader>
                             <CardBody>
                                 <Form onSubmit={SignUpForm}>
