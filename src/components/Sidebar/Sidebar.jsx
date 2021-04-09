@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import PerfectScrollbar from "perfect-scrollbar";
 import { Nav } from "reactstrap";
@@ -36,14 +36,11 @@ function Sidebar(props) {
   if (logo !== undefined) {
     
       logoImg = (
-        <a
-		  href="/"
-          className="simple-text logo-mini"
-        >
+        <Link to="#" className="simple-text logo-mini">
           <div className="logo-img">
             <img src={logo.imgSrc} alt="react-logo" />
           </div>
-        </a>
+        </Link>
       );
       logoText = (
         <li
@@ -68,18 +65,18 @@ function Sidebar(props) {
             <Nav>
               {routes.map((prop, key) => {
                 if (prop.redirect) return null;
-						return(
-							<li className={ activeRoute(prop.path) + (prop.pro ? " active-pro" : "") } key={key}>
-								<NavLink
-									to={prop.layout + prop.path}
-									className="nav-link"
-									activeClassName="active"
-									onClick={props.toggleSidebar}>
-									<i className={prop.icon} />
-									<p>{rtlActive ? prop.rtlName : prop.name}</p>
-								</NavLink>
-							</li>
-						)
+				return(
+					<li className={ activeRoute(prop.path) + (prop.pro ? " active-pro" : "") } key={key}>
+					<NavLink
+						to={prop.layout + prop.path}
+						className="nav-link"
+						activeClassName="active"
+						onClick={props.toggleSidebar}>
+						<i className={prop.icon} />
+						<p>{rtlActive ? prop.rtlName : prop.name}</p>
+					</NavLink>
+				</li>
+				)
               })}
             </Nav>
           </div>

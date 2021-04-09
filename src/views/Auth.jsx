@@ -27,20 +27,15 @@ export default function Auth() {
         ;(async()=>{
             try {
                 if (username.length && password.length) {
-                    console.log(username, password)
                     const res = await axios.get(api + '/user', { params: {username, password}})
                     const data = res.data
                     localStorage.setItem('access_token', data.token)
-                    window.location.href = '/admin'
+                    window.location.href = '/user'
                 }
-				
 			} catch(err) {
 				console.log(err)
 			}
         })()
-        // window.location.href = '/admin/dashboard'
-        
-        
     }
 
 

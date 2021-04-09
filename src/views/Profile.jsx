@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   CardHeader,
+  CardText,
   CardBody,
   CardFooter,
   FormGroup,
@@ -12,14 +13,32 @@ import {
   Row,
   Col,
   Label,
+  CustomInput,
 } from "reactstrap";
 
 export default function Profile() {
+
+	const [filename, setFilename] = React.useState({ fileName: '', invalidFile: false })
+
+	function handleFileChange({target: {files}}) {
+        const cancel = !files.length;
+        if (cancel) return;
+        const [{ size, name }] = files;
+        const maxSize = 200000;
+
+        if (size < maxSize) {
+        setFilename({ fileName: name, invalidFile: false });
+        } else {
+        setFilename({ fileName: '', invalidFile: true });
+        }
+    }
+
+
     return (
         <>
-          <div className="container mt-5">
+          <div className="content">
             <Row>
-              <Col md="12">
+              <Col md="8">
                 <Card>
                   <CardHeader>
                     <h5 className="title">Student Profile</h5>
@@ -78,16 +97,18 @@ export default function Profile() {
                         </Col>
                       </Row>
                       <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label>Address</label>
-                            <Input
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                              placeholder="Home Address"
-                              type="text"
-                            />
-                          </FormGroup>
-                        </Col>
+                      <Col className="pr-md-3 mx-auto" color="primary" md="12">
+                      <FormGroup>
+                          <label>Rasm:</label>
+                          <CustomInput
+                          type="file"
+                          id="FileBrowser"
+                          name="customFile"
+                          onChange={handleFileChange}
+                          label={filename.fileName || 'Rasmingizni yuklang'}
+                          invalid={filename.invalidFile} />
+                      </FormGroup>
+                      </Col>
                       </Row>
                       <Row>
                         <Col className="pr-md-1" md="6">
@@ -131,6 +152,39 @@ export default function Profile() {
                   </CardFooter>
                 </Card>
               </Col>
+              <Col md="4">
+              <Card className="card-user">
+                <CardBody>
+                  <CardText />
+                  <div className="author">
+                    <div className="block block-one" />
+                    <div className="block block-two" />
+                    <div className="block block-three" />
+                    <div className="block block-four" />
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <img
+					  	style={{objectFit: "cover"}}
+                        alt="..."
+                        className="avatar"
+                        src={'' || require("assets/img/user.png").default}
+						width="100"
+						height="100"
+                      />
+                      <h5 className="title">{'' || 'Mike Andrew'}</h5>
+                    </a>
+                    <p className="description">{'' || 'On Process...'}</p>
+                  </div>
+                  <div className="card-description">
+                    Description on process
+                  </div>
+                </CardBody>
+                <CardFooter>
+                  <div className="button-container">
+                    
+                  </div>
+                </CardFooter>
+              </Card>
+            </Col>
             </Row>
           </div>
         </>
