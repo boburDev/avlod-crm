@@ -1,9 +1,10 @@
 import React from "react"
-import { Route, Switch, Redirect } from "react-router-dom"
+import { Redirect, Route, Switch } from "react-router-dom"
 
 import AdminLayout from "layouts/Admin/Admin"
 import LoginLayout from "layouts/Auth/Login"
 import NewUserLayout from "layouts/Forms/new-user"
+import UserLayout from "layouts/UserLayout/profile.jsx"
 
 export default function App() {
     
@@ -26,13 +27,14 @@ export default function App() {
         access ? (
          <Switch>
             <Route path="/admin" render={(props) => <AdminLayout {...props} />}/>
-            <Route path="/profile" render={(props) => <AdminLayout {...props} />}/>
+            <Route path="/profile" render={(props) => <UserLayout {...props} />}/>
         </Switch>
         ) :
         (
         <Switch>
-            <Route path="/sign-in" render={(props) => <NewUserLayout {...props} />} />
+            <Route path="/sign-up" render={(props) => <NewUserLayout {...props} />} />
             <Route path="/login" render={(props) => <LoginLayout {...props} />} />
+            <Redirect from='/' to='/sign-up' />
         </Switch>
         )
         }
