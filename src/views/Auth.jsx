@@ -12,7 +12,7 @@ import {
     Col,
 } from "reactstrap";
 import axios from 'axios'
-import { useApi } from 'api/api'
+import { useApi } from 'api/api' 
 
 export default function Auth() {
 
