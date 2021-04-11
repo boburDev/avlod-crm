@@ -33,6 +33,7 @@ function Tables() {
 		})()
    },[])
 
+   console.log(students);
 
   return (
     <>
