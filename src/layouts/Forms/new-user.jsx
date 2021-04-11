@@ -16,6 +16,7 @@ import {
 import { useApi } from 'api/api'
 import axios from 'axios'
 import './new-user.css'
+import { Redirect } from "react-router";
 
 export default function CreateUser() {
 
@@ -70,6 +71,9 @@ export default function CreateUser() {
 			}
 		})()
     }
+    
+    const accessToken = window.localStorage.getItem('access_token')
+    if (!accessToken) return <Redirect to="/login" />
 
     return(
         <>

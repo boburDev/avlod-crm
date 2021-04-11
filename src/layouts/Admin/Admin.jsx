@@ -87,6 +87,8 @@ function Admin() {
 					window.location.href = '/login'
 				}
 			},[accessToken])
+
+			if (accessToken) return <Redirect to="/login" />
 			
 			
 			return (
