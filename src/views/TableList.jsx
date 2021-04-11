@@ -6,6 +6,7 @@ import {
   Table,
   Row,
   Col,
+  Button
 } from "reactstrap";
 
 import axios from 'axios'
@@ -85,14 +86,20 @@ function Tables() {
                     </tr>
                   </thead>
                   <tbody>
-					{
+					{/* {
 						students.map((item, key)=> <tr key={key}>
 							<td>{`${item.user_name}  ${item.user_surname} ${item.user_father_name}`}</td>
 							<td>{item.user_number}</td>
 							<td>{item.user_lesson}</td>
 							<td className="text-center">{item.user_group}</td>
 						</tr>)
-					}
+					} */}
+					<tr>
+						<td>Bahtiyor</td>
+						<td>1234567</td>
+						<td><Button color="danger">3 dars</Button></td>
+						<td className="text-center">fullstack 1</td>
+					</tr>
                   </tbody>
                 </Table>
               </CardBody>
