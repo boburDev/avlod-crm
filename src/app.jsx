@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Switch } from "react-router-dom"
+import { Redirect, Route, Switch } from "react-router-dom"
 
 import AdminLayout from "layouts/Admin/Admin"
 import LoginLayout from "layouts/Auth/Login"
@@ -19,6 +19,7 @@ export default function App() {
                 <LoginLayout path="admin" />
             </Route>
             <Route path="/sign-up" component={NewUserLayout} />
+            <Redirect from='/' to='/sign-up' />
         </Switch>
         </>
     )

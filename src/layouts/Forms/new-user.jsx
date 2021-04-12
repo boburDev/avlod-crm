@@ -114,7 +114,7 @@ export default function CreateUser() {
                                                 onKeyUp={(e)=> setBirthday(e.target.value)}
                                                 defaultValue=""
                                                 placeholder="19/07/2000"
-                                                type="date"
+                                                type="text"
                                                 />
                                             </FormGroup>
                                         </Col>
