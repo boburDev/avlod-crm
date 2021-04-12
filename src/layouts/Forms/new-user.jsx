@@ -17,6 +17,7 @@ import { useApi } from 'api/api'
 import axios from 'axios'
 import './new-user.css'
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function CreateUser() {
 
@@ -71,9 +72,6 @@ export default function CreateUser() {
 			}
 		})()
     }
-    
-    const accessToken = window.localStorage.getItem('access_token')
-    if (!accessToken) return <Redirect to="/login" />
 
     return(
         <>
@@ -185,11 +183,12 @@ export default function CreateUser() {
                                                 </Input>
                                             </FormGroup>
                                         </Col>
-                                       <Row className="mx-auto">
-                                            <Col className="pr-md-3" md="12">
+                                       <Row className="mx-auto w-100">
+                                            <Col className="d-flex justify-content-between align-items-center pr-md-3" md="12">
                                                 <Button className="btn-fill" color="primary" type="submit">
                                                     Submit
                                                 </Button>
+                                                <Link to='/login'>Go to Login</Link>
                                             </Col>
                                        </Row>
                                     </Row>
@@ -216,5 +215,3 @@ export default function CreateUser() {
         </>
     )
 }
-
-// localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYm9idXJtaXJ6byIsInB3IjoiMTIzNDUiLCJzdGF0dXMiOjEsImlhdCI6MTYxNzc2NTUyNiwiZXhwIjoxNjE4MzcwMzI2fQ.xjN0O_QT85OQdOD7lK4KAbM-oMLPsn6HtQcZuG128j4')

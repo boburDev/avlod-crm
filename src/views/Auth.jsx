@@ -77,7 +77,7 @@ export default function Auth(props) {
                                             <Button className="btn-fill" color="primary" type="submit">
                                                 Login
                                             </Button>
-                                            <Link className="ml-5" to="/sign-in">Sign Up </Link>
+                                            <Link className="ml-5" to="/sign-up">Sign Up</Link>
                                         </Col>
                                     </Row>
                                 </Form>
