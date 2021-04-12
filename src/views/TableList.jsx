@@ -15,8 +15,8 @@ import { useEffect, useState } from "react";
 
 function Tables() {
 
-	const [admins, setAdmins] = useState([])
-	const [students, setStudents] = useState([])
+	const [admins] = useState([])
+	const [students] = useState([])
 	const [api] = useApi()  
 	const accessToken = window.localStorage.getItem('access_token')
 	useEffect(()=> {
@@ -28,8 +28,7 @@ function Tables() {
 					}
 				})
 				const data = res.data
-				setAdmins(data.admins)
-				setStudents(data.users)
+				console.log(data)
 			} catch(err) {
 				console.log(err)
 			}
