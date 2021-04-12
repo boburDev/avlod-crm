@@ -1,7 +1,6 @@
 import Dashboard from "views/Dashboard";
 import TableList from "views/TableList";
 import UserProfile from "views/UserProfile";
-import Login from "views/Auth";
 
 var routes = [
   {
@@ -24,13 +23,6 @@ var routes = [
     icon: "tim-icons icon-puzzle-10",
     component: TableList,
     layout: "/admin",
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "tim-icons icon-button-power",
-    component: Login,
-    layout: "/login",
   }
 ];
 export default routes;
