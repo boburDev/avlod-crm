@@ -55,6 +55,11 @@ function Admin() {
 			document.documentElement.classList.toggle("nav-open");
 			setsidebarOpened(!sidebarOpened);
 		};
+
+		const logOut = () => {
+			window.localStorage.removeItem('access_token')
+			window.location.href = '/login'
+		}
 		const getRoutes = (routes) => {
 			return routes.map((prop, key) => {
 				if (prop.layout === "/admin") {
@@ -103,6 +108,7 @@ function Admin() {
 						imgSrc: logo,
 					}}
 					toggleSidebar={toggleSidebar}
+					logOut={logOut}
 					/>
 					<div className="main-panel" ref={mainPanelRef} data={color}>
 					<AdminNavbar

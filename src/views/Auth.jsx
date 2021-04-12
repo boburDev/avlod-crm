@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
     Button,
     Card,
@@ -18,7 +18,7 @@ export default function Auth() {
 
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
-    const [api] = useApi()  
+    const [api] = useApi()
     function LoginForm(e) {
         e.preventDefault()
         
@@ -26,10 +26,10 @@ export default function Auth() {
         ;(async()=>{
             try {
                 if (username.length && password.length) {
-                    const res = await axios.get(api + '/user', { params: {username, password}})
+                    const res = await axios.post(api + '/login',  {username, password})
                     const data = res.data
                     localStorage.setItem('access_token', data.token)
-                    // window.location.href = '/user'
+                    window.location.href = '/user'
                 }
 			} catch(err) {
 				console.log(err)
@@ -37,6 +37,7 @@ export default function Auth() {
         })()
     }
 
+    if (localStorage.getItem('access_token')) return <Redirect to='user' />
 
     return(
         <>

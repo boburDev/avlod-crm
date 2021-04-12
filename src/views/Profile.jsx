@@ -16,7 +16,46 @@ import {
   CustomInput,
 } from "reactstrap";
 
+import axios from 'axios'
+import { useApi } from 'api/api' 
+
 export default function Profile() {
+
+	const [name,setName] = React.useState('')
+	const [surname,setSurname] = React.useState('')
+	const [birthday,setBirthday] = React.useState('')
+	const [number,setNumber] = React.useState('')
+	const [lesson,setLesson] = React.useState('')
+	
+	const [api] = useApi()  
+	const accessToken = window.localStorage.getItem('access_token')
+	React.useEffect(()=>{
+		;(async()=>{
+			try {
+					const res = await axios.get(api + '/user', {
+						headers: {
+							access_token: accessToken
+						}
+					})
+					const data = res.data
+					const dataObj = data.data
+					if (data && data.is_user) {
+						setName(dataObj.name)
+						setSurname(dataObj.surname)
+						setBirthday(dataObj.birthday)
+						setNumber(dataObj.number)
+						setLesson(dataObj.lesson)	
+					}else {
+						window.location.href = '/'
+					}
+
+
+
+			} catch(err) {
+				console.log(err)
+			}
+		})()
+	},[api, accessToken])
 
 	const [filename, setFilename] = React.useState({ fileName: '', invalidFile: false })
 
@@ -32,8 +71,6 @@ export default function Profile() {
         setFilename({ fileName: '', invalidFile: true });
         }
     }
-
-
     return (
         <>
           <div className="content">
@@ -50,7 +87,8 @@ export default function Profile() {
                           <FormGroup>
                             <label>Name:</label>
                             <Input
-                              placeholder="name"
+							  disabled
+                              placeholder={name}
                               type="text"
                             />
                           </FormGroup>
@@ -58,8 +96,8 @@ export default function Profile() {
                         <Col className="px-md-1" md="3">
                           <FormGroup>
                             <label>Surname:</label>
-                            <Input
-                              placeholder="surname"
+                            <Input disabled
+                              placeholder={surname}
                               type="text"
                             />
                           </FormGroup>
@@ -69,7 +107,7 @@ export default function Profile() {
                             <label htmlFor="exampleInputEmail1">
                                 Tug'ulgan kuni:
                             </label>
-                            <Input placeholder="19/07/2000" type="date" />
+                            <Input disabled placeholder={birthday} type="date" />
                           </FormGroup>
                         </Col>
                       </Row>
@@ -77,9 +115,9 @@ export default function Profile() {
                         <Col className="pr-md-1" md="6">
                             <FormGroup>
                                 <label>Telefon raqam:</label>
-                                <Input
+                                <Input disabled
                                 defaultValue=""
-                                placeholder="+998998616951"
+                                placeholder={number}
                                 type="text"
                                 />
                             </FormGroup>
@@ -87,10 +125,10 @@ export default function Profile() {
                       <Col className="pr-md-1" md="6">
                             <FormGroup>
                             <Label for="exampleSelect">Dars soni:</Label>
-                                <Input type="select" name="select" id="exampleSelect" defaultValue="6">
+                                <Input type="select" name="select" id="exampleSelect">
                                     <option value="0">Tanlang</option>
                                 {
-                                    Array(72).fill('@').map((i,index)=> <option value={index+1} key={index}>{index+1} dars</option>)
+                                    Array(lesson-0).fill('@').map((i,index)=> <option value={index+1} key={index}>{index+1} dars</option>)
                                 }
                                 </Input>
                             </FormGroup>
@@ -115,6 +153,7 @@ export default function Profile() {
                           <FormGroup>
                             <label>Dars haqida fikringiz</label>
                             <Input
+							disabled
                               cols="80"
                               placeholder="..."
                               rows="4"

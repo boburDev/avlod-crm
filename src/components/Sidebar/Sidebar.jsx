@@ -80,7 +80,7 @@ function Sidebar(props) {
               })}
 			  <li>
 					<NavLink
-						to='/login'
+						to=''
 						className="nav-link"
 						activeClassName="active"
 						onClick={props.logOut}>

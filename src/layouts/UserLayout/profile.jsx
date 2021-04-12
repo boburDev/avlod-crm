@@ -11,7 +11,8 @@ import logo from "assets/img/react-logo.png";
 var ps;
 
 function UserProfile() {
-
+	const accessToken = window.localStorage.getItem('access_token')
+	
 	const location = useLocation();
 	const mainPanelRef = React.useRef(null);
 	const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -72,7 +73,6 @@ function UserProfile() {
 				});
 			};
 			
-			const accessToken = window.localStorage.getItem('access_token')
 			
 			React.useEffect(()=>{
 				if (!accessToken) {
@@ -90,6 +90,10 @@ function UserProfile() {
 				return "Brand";
 			};
 			
+			const logOut = () => {
+				window.localStorage.removeItem('access_token')
+				window.location.href = '/login'
+			}
 
   return (
     <BackgroundColorContext.Consumer>
@@ -103,6 +107,7 @@ function UserProfile() {
 				imgSrc: logo,
 			}}
 			toggleSidebar={toggleSidebar}
+			logOut={logOut}
 			/>
             <div className="main-panel" data={color}>
 			<UserNavbar
