@@ -29,7 +29,7 @@ export default function Auth() {
                     const res = await axios.get(api + '/user', { params: {username, password}})
                     const data = res.data
                     localStorage.setItem('access_token', data.token)
-                    window.location.href = '/user'
+                    // window.location.href = '/user'
                 }
 			} catch(err) {
 				console.log(err)

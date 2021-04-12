@@ -1,5 +1,5 @@
 import Profile from 'views/Profile'
-import Login from "views/Auth";
+// import Login from "views/Auth";
 
 var routes = [
   {
@@ -9,12 +9,12 @@ var routes = [
     component: Profile,
     layout: "/user",
   },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "tim-icons icon-button-power",
-    component: Login,
-    layout: "/login",
-  }
+  // {
+  //   path: "/login",
+  //   name: "Login",
+  //   icon: "tim-icons icon-button-power",
+  //   component: Login,
+  //   layout: "/login",
+  // }
 ];
 export default routes;

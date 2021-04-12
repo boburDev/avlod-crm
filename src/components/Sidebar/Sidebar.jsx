@@ -78,6 +78,16 @@ function Sidebar(props) {
 				</li>
 				)
               })}
+			  <li>
+					<NavLink
+						to='/login'
+						className="nav-link"
+						activeClassName="active"
+						onClick={props.logOut}>
+						<i className="tim-icons icon-button-power" />
+						<p>Login</p>
+					</NavLink>
+				</li>
             </Nav>
           </div>
         </div>

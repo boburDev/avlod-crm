@@ -88,7 +88,7 @@ function Admin() {
 				}
 			},[accessToken])
 
-			if (accessToken) return <Redirect to="/login" />
+			if (!accessToken) return <Redirect to="/login" />
 			
 			
 			return (

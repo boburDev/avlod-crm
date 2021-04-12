@@ -111,26 +111,6 @@ export default function Profile() {
                       </Col>
                       </Row>
                       <Row>
-                        <Col className="pr-md-1" md="6">
-                          <FormGroup>
-                            <label>Username:</label>
-                            <Input
-                              placeholder="username"
-                              type="text"
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col className="px-md-1" md="6">
-                          <FormGroup>
-                            <label>Password:</label>
-                            <Input
-                              placeholder="password"
-                              type="text"
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
                         <Col md="8">
                           <FormGroup>
                             <label>Dars haqida fikringiz</label>

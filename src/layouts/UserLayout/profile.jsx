@@ -1,4 +1,5 @@
 import React from "react";
+import UserNavbar from "components/Navbars/AdminNavbar";
 import PerfectScrollbar from "perfect-scrollbar";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
@@ -79,6 +80,15 @@ function UserProfile() {
 					window.location.href = '/login'
 				}
 			},[accessToken])
+
+			const getBrandText = (path) => {
+				for (let i = 0; i < routes.length; i++) {
+					if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
+						return routes[i].name;
+					}
+				}
+				return "Brand";
+			};
 			
 
   return (
@@ -86,7 +96,6 @@ function UserProfile() {
       {({ color }) => (
         <React.Fragment>
           <div className="wrapper">
-            <div className="main-panel" data={color}>
 			<Sidebar
 			routes={routes}
 			logo={{
@@ -95,6 +104,13 @@ function UserProfile() {
 			}}
 			toggleSidebar={toggleSidebar}
 			/>
+            <div className="main-panel" data={color}>
+			<UserNavbar
+					brandText={getBrandText(location.pathname)}
+					toggleSidebar={toggleSidebar}
+					sidebarOpened={sidebarOpened}
+					displayNone={false}
+					/>
 			  <Switch>
 				{getRoutes(routes)}
 				<Redirect from="/" to="/user/user-profile" />

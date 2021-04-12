@@ -73,7 +73,7 @@ function AdminNavbar(props) {
               {props.brandText}
             </NavbarBrand>
           </div>
-          <NavbarToggler onClick={toggleCollapse}>
+          <NavbarToggler onClick={toggleCollapse} style={{display: props.displayNone ? '' : 'none'}}>
             <span className="navbar-toggler-bar navbar-kebab" />
             <span className="navbar-toggler-bar navbar-kebab" />
             <span className="navbar-toggler-bar navbar-kebab" />
