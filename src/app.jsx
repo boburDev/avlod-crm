@@ -26,7 +26,12 @@ export default function App() {
          <Switch>
             <Route path="/admin" component={AdminLayout} />
             <Route path="/user" component={UserLayout} />
-            <Route path="/login" component={LoginLayout} />
+            <Route path="/login">
+                <LoginLayout path="login" />
+            </Route>
+            <Route path="/login-admin">
+                <LoginLayout path="admin" />
+            </Route>
             <Route path="/sign-up" component={NewUserLayout} />
             <Redirect from='/' to='/sign-up' />
         </Switch>

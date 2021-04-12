@@ -14,10 +14,10 @@ import {
 import axios from 'axios'
 import { useApi } from 'api/api' 
 
-export default function Auth() {
+export default function Auth(props) {
 
-    const [username, setUsername] = React.useState('')
-    const [password, setPassword] = React.useState('')
+    const [username, setUsername] = React.useState('boburDev')
+    const [password, setPassword] = React.useState('123456')
     const [api] = useApi()
     function LoginForm(e) {
         e.preventDefault()
@@ -26,10 +26,10 @@ export default function Auth() {
         ;(async()=>{
             try {
                 if (username.length && password.length) {
-                    const res = await axios.post(api + '/login',  {username, password})
+                    const res = await axios.post(api + `/${props.routeName}`,  {username, password})
                     const data = res.data
                     localStorage.setItem('access_token', data.token)
-                    window.location.href = '/user'
+                    window.location.href = `/${props.pathname}`
                 }
 			} catch(err) {
 				console.log(err)
@@ -37,7 +37,7 @@ export default function Auth() {
         })()
     }
 
-    if (localStorage.getItem('access_token')) return <Redirect to='user' />
+    if (localStorage.getItem('access_token')) return <Redirect to={`/${props.pathname}`} />
 
     return(
         <>

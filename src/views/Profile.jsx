@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 
 import axios from 'axios'
-import { useApi } from 'api/api' 
+import { useApi } from 'api/api'
 
 export default function Profile() {
 
@@ -48,9 +48,6 @@ export default function Profile() {
 					}else {
 						window.location.href = '/'
 					}
-
-
-
 			} catch(err) {
 				console.log(err)
 			}

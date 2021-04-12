@@ -5,12 +5,11 @@ import {
   CardTitle,
   Table,
   Row,
-  Col,
-  Button
+  Col
 } from "reactstrap";
 
 import axios from 'axios'
-
+import { useApi } from 'api/api'
 import { useEffect, useState } from "react";
 
 
@@ -18,20 +17,24 @@ function Tables() {
 
 	const [admins, setAdmins] = useState([])
 	const [students, setStudents] = useState([])
-
+	const [api] = useApi()  
+	const accessToken = window.localStorage.getItem('access_token')
 	useEffect(()=> {
 		;(async()=>{
 			try {
-				const res = await axios.get('')
+				const res = await axios.get(api + '/admin', {
+					headers: {
+						access_token: accessToken
+					}
+				})
 				const data = res.data
-
 				setAdmins(data.admins)
 				setStudents(data.users)
 			} catch(err) {
 				console.log(err)
 			}
 		})()
-   },[])
+   },[api, accessToken])
 
    console.log(students);
 
@@ -95,12 +98,6 @@ function Tables() {
 							<td className="text-center">{item.user_group}</td>
 						</tr>)
 					} */}
-					<tr>
-						<td>Bahtiyor</td>
-						<td>1234567</td>
-						<td><Button color="danger">3 dars</Button></td>
-						<td className="text-center">fullstack 1</td>
-					</tr>
                   </tbody>
                 </Table>
               </CardBody>
