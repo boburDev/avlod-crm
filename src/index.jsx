@@ -7,6 +7,7 @@ import App from "app"
 import "assets/scss/black-dashboard-react.scss"
 import "assets/demo/demo.css"
 import "assets/css/nucleo-icons.css"
+import "assets/css/style.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper"

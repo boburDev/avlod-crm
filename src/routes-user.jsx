@@ -1,4 +1,5 @@
 import Profile from 'views/Profile'
+import Chat from 'views/Chat'
 
 var routes = [
   {
@@ -12,7 +13,7 @@ var routes = [
     path: "/user-chat",
     name: "UserChat",
     icon: "tim-icons icon-chat-33",
-    component: Profile,
+    component: Chat,
     layout: "/user",
   },
 ];

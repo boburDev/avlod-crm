@@ -16,7 +16,6 @@ import {
 import { useApi } from 'api/api'
 import axios from 'axios'
 import './new-user.css'
-import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
 export default function CreateUser() {
