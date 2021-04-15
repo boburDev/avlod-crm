@@ -1,7 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
 }
 
 p {
@@ -35,21 +34,13 @@ a:focus {
     border: none;
 }
 
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-
-.wrapper {
+#wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
+    min-height: 88vh;
+    max-height: 88vh;
+    overflow: auto;
 }
 
 #sidebar {
@@ -58,6 +49,7 @@ a:focus {
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    border-radius: 20px;
 }
 
 #sidebar.active {
@@ -67,11 +59,11 @@ a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
+    border-radius: 5px;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul p {
@@ -137,11 +129,15 @@ a.article:hover {
     color: #fff !important;
 }
 
+.chat_body {
+    height: 74vh !important;
+}
 
 #content {
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    max-height: 100vh !important;
+    overflow: hidden;
     transition: all 0.3s;
 }
 

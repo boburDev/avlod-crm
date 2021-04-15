@@ -20,7 +20,7 @@ export default function Chat() {
         <>
             <div className="content">
                 <Row>
-                    <div className="wrapper">
+                    <div id="wrapper">
                         <nav id="sidebar" className={`${addActive ? 'active' : ''}`}>
                             <div className="sidebar-header">
                                 <h3>Users List</h3>
@@ -50,7 +50,7 @@ export default function Chat() {
                                     </Button>
 
                                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul className="nav navbar-nav ml-auto">
+                                        <ul className="nav navbar-nav ml-auto" style={{display: 'none'}}>
                                             <li className="nav-item active">
                                                 <Link className="nav-link" to="#">Page</Link>
                                             </li>
@@ -67,33 +67,14 @@ export default function Chat() {
                                     </div>
                                 </div>
                             </nav>
+                            <div className="container-fluid ">
+                            <Row>
+                                <Col md="12" className="chat_body" style={{backgroundColor: '#fff'}}>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit modi aut officia non corrupti rem officiis temporibus earum sunt autem quasi, reiciendis animi obcaecati fuga in. Alias, officiis provident pariatur expedita delectus, adipisci, culpa cumque corporis suscipit unde asperiores quod iure beatae quisquam similique possimus tenetur maiores eum fugiat molestias omnis! Commodi nisi autem, fugiat eius deserunt aliquid eveniet eaque voluptatum non repudiandae? At earum consequuntur beatae possimus quibusdam rem commodi autem, quos provident impedit aspernatur explicabo nobis aliquid voluptatibus, neque est consequatur sed, doloribus a dolorum optio? Sapiente tenetur fuga exercitationem sed architecto dolore ullam ea, reiciendis commodi aperiam.
+                                </Col>
+                            </Row>
+                            </div>
 
-                            <h2>Collapsible Sidebar Using Bootstrap 4</h2>
-                            <p>
-                                
-
-                            </p>
-
-                            <div className="line"></div>
-
-                            <h2>Lorem Ipsum Dolor</h2>
-                            <p>
-                                
-                            </p>
-
-                            <div className="line"></div>
-
-                            <h2>Lorem Ipsum Dolor</h2>
-                            <p>
-                                
-                            </p>
-
-                            <div className="line"></div>
-
-                            <h3>Lorem Ipsum Dolor</h3>
-                            <p>
-                                
-                            </p>
                         </div>
                     </div>
                 </Row>
