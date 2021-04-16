@@ -77,7 +77,7 @@ export default function Chat() {
                                     <div className="chat_footer">
                                         <Row>
                                             <Col md="12">
-                                                <Input />
+                                                <input className="chat_keyboard" type="text"/>
                                             </Col>
                                         </Row>
                                     </div>
