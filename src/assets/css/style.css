@@ -159,17 +159,14 @@ a.article:hover {
     max-width: 90%;
     min-width: 90%;
     outline: none;
+    border-radius: 10px;
+    padding: 10px;
     border-color: none;
     background-color: #1e1e2f !important;
     color: #fff;
-    /* font-size: 18px; */
     resize: none;
 }
 
-.chat_keyboard:active {
-    /* border-color: black !important; */
-    
-}
 .chat_keyboard:focus {
     border-color: #e14eca;
     background-color: transparent;

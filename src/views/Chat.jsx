@@ -77,7 +77,7 @@ export default function Chat() {
                                     <div className="chat_footer">
                                         <Row>
                                             <Col md="12">
-                                                <textarea className="chat_keyboard" cols="30" rows="5"></textarea>
+                                                <textarea className="chat_keyboard" cols="30" rows="4" placeholder="Message"></textarea>
                                             </Col>
                                         </Row>
                                     </div>
