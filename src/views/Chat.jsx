@@ -8,7 +8,7 @@ import {
     // CardBody,
     // FormGroup,
     // Form,
-    Input,
+    // Input,
     Row,
     Col,
 } from "reactstrap";
@@ -77,7 +77,7 @@ export default function Chat() {
                                     <div className="chat_footer">
                                         <Row>
                                             <Col md="12">
-                                                <input className="chat_keyboard" type="text"/>
+                                                <textarea className="chat_keyboard" cols="30" rows="5"></textarea>
                                             </Col>
                                         </Row>
                                     </div>

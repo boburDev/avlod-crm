@@ -133,6 +133,8 @@ a.article:hover {
     position: relative;
     height: 74vh !important;
     padding: 10px;
+    background-color: #1e1e2f !important;
+    border: 1px solid #fff;
 }
 
 .text_wrapper {
@@ -141,13 +143,13 @@ a.article:hover {
     left: 0;
     right: 0;
     width: 100%;
-    height: 67vh !important;
+    height: 60vh !important;
     overflow: auto;
 }
 
 .chat_footer {
     position: relative;
-    top: 2%;
+    top: 1%;
     left: 0;
     right: 0;
     width: 100%;
@@ -156,6 +158,22 @@ a.article:hover {
 .chat_keyboard {
     max-width: 90%;
     min-width: 90%;
+    outline: none;
+    border-color: none;
+    background-color: #1e1e2f !important;
+    color: #fff;
+    /* font-size: 18px; */
+    resize: none;
+}
+
+.chat_keyboard:active {
+    /* border-color: black !important; */
+    
+}
+.chat_keyboard:focus {
+    border-color: #e14eca;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 #content {

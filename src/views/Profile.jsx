@@ -150,7 +150,7 @@ export default function Profile() {
                           <FormGroup>
                             <label>Dars haqida fikringiz</label>
                             <Input
-							disabled
+							 
                               cols="80"
                               placeholder="..."
                               rows="4"
@@ -186,6 +186,7 @@ export default function Profile() {
 						width="100"
 						height="100"
                       />
+					  
                       <h5 className="title">{'' || 'Mike Andrew'}</h5>
                     </a>
                     <p className="description">{'' || 'On Process...'}</p>

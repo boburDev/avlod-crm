@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import { useApi } from 'api/api'
 import axios from 'axios'
-import './new-user.css'
+
 import { Link } from "react-router-dom";
 
 export default function CreateUser() {
