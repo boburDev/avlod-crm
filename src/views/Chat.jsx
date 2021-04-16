@@ -1,14 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-// Redirect
+
 import {
     Button,
-    // Card,
-    // CardHeader,
-    // CardBody,
-    // FormGroup,
-    // Form,
-    // Input,
     Row,
     Col,
 } from "reactstrap";

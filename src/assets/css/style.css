@@ -131,7 +131,7 @@ a.article:hover {
 
 .chat_body {
     position: relative;
-    height: 74vh !important;
+    height: 70vh !important;
     padding: 10px;
     background-color: #1e1e2f !important;
     border: 1px solid #fff;
@@ -143,7 +143,7 @@ a.article:hover {
     left: 0;
     right: 0;
     width: 100%;
-    height: 60vh !important;
+    height: 55vh !important;
     overflow: auto;
 }
 
