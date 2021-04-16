@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+// Redirect
 import {
     Button,
-    Card,
-    CardHeader,
-    CardBody,
-    FormGroup,
-    Form,
+    // Card,
+    // CardHeader,
+    // CardBody,
+    // FormGroup,
+    // Form,
     Input,
     Row,
     Col,
