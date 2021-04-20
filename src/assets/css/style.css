@@ -156,8 +156,10 @@ a.article:hover {
 }
 
 .chat_keyboard {
-    max-width: 90%;
     min-width: 90%;
+    max-width: 90%;
+    height: 110px;
+    margin-top: auto;
     outline: none;
     border-radius: 10px;
     padding: 10px;

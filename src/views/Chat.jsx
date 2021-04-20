@@ -1,16 +1,40 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-
+import openSocket from "socket.io-client"
+import axios from 'axios'
 import {
     Button,
     Row,
     Col,
 } from "reactstrap";
 // import axios from 'axios'
-// import { useApi } from 'api/api' 
-
+import { useApi } from 'api/api' 
 export default function Chat() {
+    
     const [addActive, setAddActive] = React.useState(false)
+    const [api] = useApi()
+    
+    React.useEffect(() => {
+        ;(async()=>{
+            const socket = openSocket(api, {transports: ['websocket']})
+            if (api) {
+                const res = await axios.get(api)
+                console.log(res.data)
+                socket.on('connect', ()=>{
+                    console.log('new connect')
+                })
+            }
+        })()
+      }, [api])
+
+      function chatKeyboard (e) {
+          const socket = openSocket(api, {transports: ['websocket']})
+          if (e.keyCode === 13) {
+            socket.emit('new message', { message : e.target.value })
+            e.target.value = ''
+          }
+      }
+
     return (
         <>
             <div className="content">
@@ -73,7 +97,7 @@ export default function Chat() {
                                     <div className="chat_footer">
                                         <Row>
                                             <Col md="12">
-                                                <textarea className="chat_keyboard" cols="30" rows="4" placeholder="Message"></textarea>
+                                                <textarea onKeyUp={chatKeyboard} className="chat_keyboard" cols="30" rows="3" placeholder="Message"></textarea>
                                             </Col>
                                         </Row>
                                     </div>
