@@ -18,6 +18,7 @@ export default function Chat() {
         ;(async()=>{
             const socket = openSocket(api, {transports: ['websocket']})
             if (api) {
+                console.log(api)
                 const res = await axios.get(api)
                 console.log(res.data)
                 socket.on('connect', ()=>{

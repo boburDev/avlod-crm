@@ -11,7 +11,7 @@ const ApiProvider = ({children})=>{
         const server = {
             server_dev: "http://192.168.100.9:4001",
             server_dev2: "http://192.168.43.4:4001",
-            server_dev3: "http://192.168.1.105:4001",
+            server_dev3: "http://92.168.100.9:4001",
             server_dep: "https://avlod21.herokuapp.com"
         }
         if (isTester) {
