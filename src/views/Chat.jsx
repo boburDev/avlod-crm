@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import openSocket from "socket.io-client"
+import sendIcon from '../assets/img/send-button.png'
+import clipIcon from '../assets/img/clip.png'
 import axios from 'axios'
 import {
     Button,
@@ -58,50 +60,47 @@ export default function Chat() {
                                 </li>
                             </ul>
                         </nav>
-                        <div id="content">
-                            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <div id="content" className="chat-content">
+                            <nav className="navbar navbar-expand-lg navbar-light bg-light chat-navbar-user">
                                 <div className="container-fluid">
-
                                     <Button type="button" id="sidebarCollapse" className="btn btn-info" onClick={()=>setAddActive(!addActive)}>
                                         <i className="fas fa-align-left"></i>
                                     </Button>
-                                    <Button className="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                        <i className="fas fa-align-justify"></i>
-                                    </Button>
-
-                                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul className="nav navbar-nav ml-auto" style={{display: 'none'}}>
-                                            <li className="nav-item active">
-                                                <Link className="nav-link" to="#">Page</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="#">Page</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="#">Page</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="#">Page</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </nav>
-                            <div className="container-fluid ">
+                            <div className="container-fluid">
                             <Row>
                                 <Col md="12" className="chat_body" style={{backgroundColor: '#fff'}}>
                                     <div className="text_wrapper">
-                                        <Col md="2">
-                                            
-                                        </Col>
+                                        <div className="chat-messages">
+                                            <div className="reciaved_msg">
+                                                <p>
+                                                    Hi
+                                                    <sub>08:00 AM</sub>
+                                                </p>
+                                            </div>
+                                            <div className="sended_msg">
+                                                <p>
+                                                    Hey
+                                                    <sub>08:00 PM</sub>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <Col md={12} style={{paddingRight: 0}}>
                                     <div className="chat_footer">
                                         <Row>
-                                            <Col md="12">
-                                                <textarea onKeyUp={chatKeyboard} className="chat_keyboard" cols="30" rows="3" placeholder="Message"></textarea>
-                                            </Col>
+                                            <textarea onKeyUp={chatKeyboard} className="chat_keyboard" cols="30" rows="3" placeholder="Message"></textarea>
+                                            <form className="footer_form" encType="multipart/form-data">
+                                                <label htmlFor="clip">
+                                                    <img src={clipIcon} alt="clip" />
+                                                    <input type="file" hidden id="clip" />
+                                                </label>
+                                                <button><img src={sendIcon} alt="sendBtn" /></button>
+                                            </form>
                                         </Row>
                                     </div>
+                                    </Col>
                                 </Col>
                             </Row>
                             </div>
