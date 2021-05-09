@@ -89,11 +89,11 @@ function Admin() {
 			React.useEffect(()=>{
 				if (!accessToken) {
 					window.localStorage.removeItem('access_token')
-					window.location.href = '/login'
+					window.location.href = '/login-admin'
 				}
 			},[accessToken])
 
-			if (!accessToken) return <Redirect to="/login" />
+			if (!accessToken) return <Redirect to="/login-admin" />
 			
 			
 			return (

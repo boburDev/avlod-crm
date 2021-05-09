@@ -3,7 +3,6 @@ import Auth from 'views/Auth'
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 
 function Login(props) {
-	console.log(props)
 	return (
 		<BackgroundColorContext.Consumer>
 		{({ color }) => (

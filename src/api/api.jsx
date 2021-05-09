@@ -4,7 +4,7 @@ const Context = React.createContext()
 const ApiProvider = ({children})=>{
 
     const [state, setState] = React.useState('')
-    const isTester = true
+    const isTester = false
 
     React.useEffect(()=>{
 
