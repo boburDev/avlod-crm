@@ -92,7 +92,16 @@ function Admin() {
 			// },[accessToken])
 
 			// if (!accessToken) return <Redirect to="/login" />
+			const accessToken = window.localStorage.getItem('access_token')
 			
+			React.useEffect(()=>{
+				if (!accessToken) {
+					window.localStorage.removeItem('access_token')
+					window.location.href = '/login-admin'
+				}
+			},[accessToken])
+
+			if (!accessToken) return <Redirect to="/login-admin" />
 			
 			return (
 				<BackgroundColorContext.Consumer>

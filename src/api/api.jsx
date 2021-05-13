@@ -12,11 +12,12 @@ const ApiProvider = ({children})=>{
             server_dev: "http://192.168.100.9:4001",
             server_dev2: "http://192.168.43.4:4001",
             server_dev3: "http://92.168.100.9:4001",
+            server_dev4: "http://localhost:4001",
             server_dep: "https://avlod21.herokuapp.com"
         }
         if (isTester) {
             // setState(server.server_dev)
-            setState(server.server_dev2)
+            setState(server.server_dev4)
             // setState(server.server_dev3)
         } else {
             setState(server.server_dep)
