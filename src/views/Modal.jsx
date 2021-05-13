@@ -1,0 +1,58 @@
+import axios from "axios"
+import { useState } from "react"
+import {
+    Button as MatButton,
+    Modal, 
+    ModalHeader, 
+    ModalBody, 
+    Input,
+    Label,
+    Form
+  } from "reactstrap"
+
+function Createmodal ({ toggle, className, modal }) {
+
+    const [ date, setDate ] = useState("")
+    const [ title, setTitle ] = useState("")
+    const [ body, setBody ] = useState("")
+
+    const submitForm = (e) => {
+        e.preventDefault()
+
+        console.log(date, title, body)
+
+        axios.post('http://localhost:4001/new-task', {
+            data: {
+                date, 
+                title,
+                body
+            }
+        })
+            .then((response) => {
+                if(response) {
+                    console.log(response)
+                }
+            }, (error) => {
+                console.log(error);
+        });
+    }
+
+    return (
+        <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}>New product</ModalHeader>
+            <ModalBody>
+                <Form onSubmit={(e) => submitForm(e)}>
+                        <Label>Task date</Label>
+                        <Input placeholder="23/08/12" onChange={e => setDate(e.target.value)} type="date" style={{"color": "black"}} name="select" />
+                        <Label>Task title</Label>
+                        <Input maxLength="6" onKeyUp={e => setTitle(e.target.value)} placeholder="To do" type="text" style={{"color": "black"}} name="select" />
+                        <Label>Task definition</Label>
+                        <Input maxLength="256" onKeyUp={e => setBody(e.target.value)} placeholder="Definition" type="textarea" style={{"color": "black"}} name="text" id="exampleText" />
+                <MatButton type="submit" style={{"margin": "0 auto", "marginTop": "50px", "marginBottom": "40px", "width": "100%"}} color="primary">Submit</MatButton>{' '}
+                </Form>
+            </ModalBody>
+        </Modal>
+    )
+}
+
+export default Createmodal

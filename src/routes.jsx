@@ -1,6 +1,7 @@
 import Dashboard from "views/Dashboard";
 import TableList from "views/TableList";
 import UserProfile from "views/UserProfile";
+import Todolist from "views/Todolist";
 
 var routes = [
   {
@@ -22,6 +23,13 @@ var routes = [
     name: "Table List",
     icon: "tim-icons icon-puzzle-10",
     component: TableList,
+    layout: "/admin",
+  },
+  {
+    path: "/todo-list",
+    name: "To-do List",
+    icon: "tim-icons icon-puzzle-10",
+    component: Todolist,
     layout: "/admin",
   }
 ];

@@ -56,10 +56,10 @@ function Admin() {
 			setsidebarOpened(!sidebarOpened);
 		};
 
-		const logOut = () => {
-			window.localStorage.removeItem('access_token')
-			window.location.href = '/login'
-		}
+		// const logOut = () => {
+		// 	window.localStorage.removeItem('access_token')
+		// 	window.location.href = '/login'
+		// }
 		const getRoutes = (routes) => {
 			return routes.map((prop, key) => {
 				if (prop.layout === "/admin") {
@@ -84,16 +84,14 @@ function Admin() {
 				return "Brand";
 			};
 			
-			const accessToken = window.localStorage.getItem('access_token')
-			
-			React.useEffect(()=>{
-				if (!accessToken) {
-					window.localStorage.removeItem('access_token')
-					window.location.href = '/login'
-				}
-			},[accessToken])
+			// React.useEffect(()=>{
+			// 	if (!accessToken) {
+			// 		window.localStorage.removeItem('access_token')
+			// 		window.location.href = '/login'
+			// 	}
+			// },[accessToken])
 
-			if (!accessToken) return <Redirect to="/login" />
+			// if (!accessToken) return <Redirect to="/login" />
 			
 			
 			return (
@@ -108,7 +106,7 @@ function Admin() {
 						imgSrc: logo,
 					}}
 					toggleSidebar={toggleSidebar}
-					logOut={logOut}
+					// logOut={logOut}
 					/>
 					<div className="main-panel" ref={mainPanelRef} data={color}>
 					<AdminNavbar

@@ -23,8 +23,6 @@ const ApiProvider = ({children})=>{
         }
     }, [isTester])
 
-
-
     const value = {
         state,
         setState
