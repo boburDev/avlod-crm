@@ -8,39 +8,39 @@ import {
   Col
 } from "reactstrap";
 
-// import axios from 'axios'
-// import { useApi } from 'api/api'
-import { useState } from "react";
+import axios from 'axios'
+import { useApi } from 'api/api'
+import { useState, useEffect } from "react";
 
 
 function Tables() {
 
-	const [admins] = useState([
+	const [admins, setAdmin] = useState([
 		{
 			id: 1,
 			admin_status: "Admin"
 		}
 	])
-	const [students] = useState([])
-	// const [api] = useApi()  
-	// const accessToken = window.localStorage.getItem('access_token')
-// 	useEffect(()=> {
-// 		;(async()=>{
-// 			try {
-// 				const res = await axios.get(api + '/admin', {
-// 					headers: {
-// 						access_token: accessToken
-// 					}
-// 				})
-// 				const data = res.data.data
-// 				setStudents(data.students)
-// 				setAdmin(data.admins)
-// 				console.log(data)
-// 			} catch(err) {
-// 				console.log(err)
-// 			}
-// 		})()
-//    },[api, accessToken])
+	const [students, setStudents] = useState([])
+	const [api] = useApi()  
+	const accessToken = window.localStorage.getItem('access_token')
+	useEffect(()=> {
+		;(async()=>{
+			try {
+				const res = await axios.get(api + '/admin', {
+					headers: {
+						access_token: accessToken
+					}
+				})
+				const data = res.data.data
+				setStudents(data.students)
+				setAdmin(data.admins)
+				console.log(data)
+			} catch(err) {
+				console.log(err)
+			}
+		})()
+   },[api, accessToken])
 
   return (
     <>

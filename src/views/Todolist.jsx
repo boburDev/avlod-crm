@@ -24,7 +24,7 @@ function Tables(props) {
     className
   } = props;
   
-  const toggle = (e) => {
+  const toggle = () => {
     setModal(!modal)
   };
 
@@ -33,13 +33,12 @@ function Tables(props) {
         try {
           const res = await axios.get('http://localhost:4001/tasks')
           const data = res.data.data
-          console.log(data)
-          setTasks([ ])
+          setTasks(data)
         } catch(err) {
           console.log(err)
         }
       })()
-    })
+    },[])
 
   return (
     <>
@@ -66,18 +65,24 @@ function Tables(props) {
                   <thead className="text-primary">
                     <tr>
                         <th>#</th>
+                        <th>Title</th>
                         <th>Task</th>
                         <th>EDIT TASK</th>
                         <th>Delete TASK</th>
+                        <th>Created date</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                      <td>1</td>
-                      <td>Aka</td>
-                      <td><MatButton color="info">EDIT</MatButton></td>
-                      <td><MatButton color="danger">DELETE</MatButton></td>
-                      </tr>
+                      {
+						  tasks && tasks.map((el,i) => <tr key={i}>
+						  <td>{el.task_id}</td>
+						  <td>{el.task_title}</td>
+						  <td>{el.task_body}</td>
+						  <td><MatButton color="info">EDIT</MatButton></td>
+						  <td><MatButton color="danger">DELETE</MatButton></td>
+						  <td>{el.task_date}</td>
+						  </tr>)
+					  }
                     </tbody>
                 </Table>
               </CardBody>

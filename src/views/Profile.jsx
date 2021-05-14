@@ -50,6 +50,8 @@ export default function Profile() {
 					}
 			} catch(err) {
 				console.log(err)
+        window.location.href = '/'
+        window.localStorage.removeItem('access_token')
 			}
 		})()
 	},[api, accessToken])

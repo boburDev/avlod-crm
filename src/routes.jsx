@@ -2,6 +2,7 @@ import Dashboard from "views/Dashboard";
 import TableList from "views/TableList";
 import UserProfile from "views/UserProfile";
 import Todolist from "views/Todolist";
+import AddLink from "views/addLink.jsx";
 
 var routes = [
   {
@@ -30,6 +31,13 @@ var routes = [
     name: "To-do List",
     icon: "tim-icons icon-puzzle-10",
     component: Todolist,
+    layout: "/admin",
+  },
+  {
+    path: "/add-lessons",
+    name: "To-do List",
+    icon: "tim-icons icon-puzzle-10",
+    component: AddLink,
     layout: "/admin",
   }
 ];
