@@ -38,7 +38,7 @@ function Tables(props) {
           console.log(err)
         }
       })()
-    },[])
+    },[api])
 
   return (
     <>

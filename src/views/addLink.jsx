@@ -44,7 +44,7 @@ function Links(props) {
           console.log(err)
         }
       })()
-    },[])
+    },[api])
 
     const submitForm = (e) => {
         e.preventDefault()
