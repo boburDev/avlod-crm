@@ -89,8 +89,8 @@ function Links(props) {
                     <tbody>
                       {
 						  tasks && tasks.map((el,i) => <tr key={i}>
-						  <td>{el.task_id}</td>
-						  <td>{el.task_title}</td>
+						  <td>{el.lesson_id}</td>
+						  <td>{el.lesson_title}</td>
 						  <td><MatButton color="info">EDIT</MatButton></td>
 						  <td><MatButton color="danger">DELETE</MatButton></td>
 						  </tr>)
@@ -99,7 +99,7 @@ function Links(props) {
                 </Table>
               </CardBody>
             </Card>
-            <MatButton onClick={toggle} color="primary">Add new task</MatButton>
+            <MatButton onClick={toggle} color="primary">Add new lesson</MatButton>
           </Col>
         </Row>
       </div>
