@@ -69,56 +69,63 @@ function AdminNavbar(props) {
                 <span className="navbar-toggler-bar bar3" />
               </NavbarToggler>
             </div>
-            <NavbarBrand href="#pablo" onClick={(e) => e.preventDefault()}>
-              {props.brandText}
-            </NavbarBrand>
+            {
+				props.user !== 'user' && <NavbarBrand href="#pablo" onClick={(e) => e.preventDefault()}>
+				{props.brandText}
+			  </NavbarBrand>
+			}
           </div>
           <NavbarToggler onClick={toggleCollapse} style={{display: props.displayNone ? '' : 'none'}}>
             <span className="navbar-toggler-bar navbar-kebab" />
             <span className="navbar-toggler-bar navbar-kebab" />
             <span className="navbar-toggler-bar navbar-kebab" />
           </NavbarToggler>
-          <Collapse navbar isOpen={collapseOpen}>
-            <Nav className="ml-auto" navbar>
-              <InputGroup className="search-bar">
-                <Button color="link" onClick={toggleModalSearch}>
-                  <i className="tim-icons icon-zoom-split" />
-                  <span className="d-lg-none d-md-block">Search</span>
-                </Button>
-              </InputGroup>
-			  
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  nav
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <div className="photo">
-                    <img
-                      alt="..."
-                      src={require("assets/img/anime3.png").default}
-                    />
-                  </div>
-                  <b className="caret d-none d-lg-block d-xl-block" />
-                  <p className="d-lg-none">Log out</p>
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  <Link to="/admin/user-profile">
-                    <DropdownItem className="nav-item">Profile</DropdownItem>
-                  </Link>
-                  <Link to="/ok">
-                    <DropdownItem className="nav-item">Settings</DropdownItem>
-                  </Link>
-                  <DropdownItem divider tag="li" />
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">Log out</DropdownItem>
-                  </NavLink>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <li className="separator d-lg-none" />
-            </Nav>
-          </Collapse>
+          {
+			  props.user !== 'user' && <Collapse navbar isOpen={collapseOpen}>
+			  <Nav className="ml-auto" navbar>
+				<InputGroup className="search-bar">
+				  <Button color="link" onClick={toggleModalSearch}>
+					<i className="tim-icons icon-zoom-split" />
+					<span className="d-lg-none d-md-block">Search</span>
+				  </Button>
+				</InputGroup>
+				
+				<UncontrolledDropdown nav>
+				  <DropdownToggle
+					caret
+					color="default"
+					nav
+					onClick={(e) => e.preventDefault()}
+				  >
+					<div className="photo">
+					  <img
+						alt="..."
+						src={require("assets/img/anime3.png").default}
+					  />
+					</div>
+					<b className="caret d-none d-lg-block d-xl-block" />
+					<p className="d-lg-none">Log out</p>
+				  </DropdownToggle>
+				  <DropdownMenu className="dropdown-navbar" right tag="ul">
+					<Link to="/admin/user-profile">
+					  <DropdownItem className="nav-item">Profile</DropdownItem>
+					</Link>
+					<Link to="/ok">
+					  <DropdownItem className="nav-item">Settings</DropdownItem>
+					</Link>
+					<DropdownItem divider tag="li" />
+					<NavLink tag="li">
+					  <DropdownItem className="nav-item" onClick={()=>{
+						window.localStorage.removeItem('access_token')
+						window.location.href = '/login-admin'
+					  }}>Log out</DropdownItem>
+					</NavLink>
+				  </DropdownMenu>
+				</UncontrolledDropdown>
+				<li className="separator d-lg-none" />
+			  </Nav>
+			</Collapse>
+		  }
         </Container>
       </Navbar>
 	  

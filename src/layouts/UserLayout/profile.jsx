@@ -108,6 +108,7 @@ function UserProfile() {
 			}}
 			toggleSidebar={toggleSidebar}
 			logOut={logOut}
+			logOutUser={'user'}
 			/>
             <div className="main-panel" data={color}>
 			<UserNavbar
@@ -115,6 +116,7 @@ function UserProfile() {
 					toggleSidebar={toggleSidebar}
 					sidebarOpened={sidebarOpened}
 					displayNone={false}
+					user={'user'}
 					/>
 			  <Switch>
 				{getRoutes(routes)}

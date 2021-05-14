@@ -1,4 +1,5 @@
 import Dashboard from "views/Dashboard";
+import Chat from 'views/Chat'
 import TableList from "views/TableList";
 import UserProfile from "views/UserProfile";
 import Todolist from "views/Todolist";
@@ -20,6 +21,13 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/user-chat",
+    name: "UserChat",
+    icon: "tim-icons icon-chat-33",
+    component: Chat,
+    layout: "/admin",
+  },
+  {
     path: "/tables",
     name: "Table List",
     icon: "tim-icons icon-puzzle-10",
@@ -35,7 +43,7 @@ var routes = [
   },
   {
     path: "/add-lessons",
-    name: "To-do List",
+    name: "Lessons",
     icon: "tim-icons icon-puzzle-10",
     component: AddLink,
     layout: "/admin",

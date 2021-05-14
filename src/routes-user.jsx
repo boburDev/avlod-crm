@@ -15,6 +15,6 @@ var routes = [
     icon: "tim-icons icon-chat-33",
     component: Chat,
     layout: "/user",
-  },
+  }
 ];
 export default routes;

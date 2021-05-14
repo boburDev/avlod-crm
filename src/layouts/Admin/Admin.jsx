@@ -28,7 +28,7 @@ function Admin() {
 					ps = new PerfectScrollbar(tables[i]);
 				}
 			}
-			// Specify how to clean up after this effect:
+
 			return function cleanup() {
 				if (navigator.platform.indexOf("Win") > -1) {
 					ps.destroy();
@@ -50,16 +50,12 @@ function Admin() {
 				mainPanelRef.current.scrollTop = 0;
 			}
 		}, [location]);
-		// this function opens and closes the sidebar on small devices
+
 		const toggleSidebar = () => {
 			document.documentElement.classList.toggle("nav-open");
 			setsidebarOpened(!sidebarOpened);
 		};
 
-		// const logOut = () => {
-		// 	window.localStorage.removeItem('access_token')
-		// 	window.location.href = '/login'
-		// }
 		const getRoutes = (routes) => {
 			return routes.map((prop, key) => {
 				if (prop.layout === "/admin") {
@@ -83,15 +79,7 @@ function Admin() {
 				}
 				return "Brand";
 			};
-			
-			// React.useEffect(()=>{
-			// 	if (!accessToken) {
-			// 		window.localStorage.removeItem('access_token')
-			// 		window.location.href = '/login'
-			// 	}
-			// },[accessToken])
 
-			// if (!accessToken) return <Redirect to="/login" />
 			const accessToken = window.localStorage.getItem('access_token')
 			
 			React.useEffect(()=>{
@@ -115,7 +103,7 @@ function Admin() {
 						imgSrc: logo,
 					}}
 					toggleSidebar={toggleSidebar}
-					// logOut={logOut}
+					logOutUser={''}
 					/>
 					<div className="main-panel" ref={mainPanelRef} data={color}>
 					<AdminNavbar

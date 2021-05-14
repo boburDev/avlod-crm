@@ -50,8 +50,8 @@ export default function Profile() {
 					}
 			} catch(err) {
 				console.log(err)
-        window.location.href = '/'
-        window.localStorage.removeItem('access_token')
+        // window.location.href = '/'
+        // window.localStorage.removeItem('access_token')
 			}
 		})()
 	},[api, accessToken])
@@ -86,9 +86,9 @@ export default function Profile() {
                           <FormGroup>
                             <label>Name:</label>
                             <Input
-							  disabled
-                              placeholder={name}
-                              type="text"
+							disabled
+                            placeholder={name}
+                            type="text"
                             />
                           </FormGroup>
                         </Col>
