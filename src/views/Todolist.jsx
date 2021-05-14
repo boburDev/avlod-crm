@@ -12,14 +12,14 @@ import {
 	Button as MatButton
 } from "reactstrap";
 import axios from 'axios';
-
+import { useApi } from 'api/api'
 
 function Tables(props) {
 
   const [ modal, setModal] = useState(false);
   const [ variant ] = useState('success')
   const [ tasks, setTasks ] = useState([])
-
+  const [api] = useApi()
   const {
     className
   } = props;
@@ -31,7 +31,7 @@ function Tables(props) {
   useEffect(()=> {
       ;(async()=>{
         try {
-          const res = await axios.get('http://localhost:4001/tasks')
+          const res = await axios.get(api+'/tasks')
           const data = res.data.data
           setTasks(data)
         } catch(err) {

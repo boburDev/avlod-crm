@@ -9,19 +9,19 @@ import {
     Label,
     Form
   } from "reactstrap"
-
+import { useApi } from 'api/api'
 function Createmodal ({ toggle, className, modal }) {
 
     const [ date, setDate ] = useState("")
     const [ title, setTitle ] = useState("")
     const [ body, setBody ] = useState("")
-
+    const [api] = useApi()
     const submitForm = (e) => {
         e.preventDefault()
 
         console.log(date, title, body)
 
-        axios.post('http://localhost:4001/new-task', {
+        axios.post(api+'/new-task', {
             data: {
                 date, 
                 title,

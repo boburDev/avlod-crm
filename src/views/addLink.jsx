@@ -17,7 +17,7 @@ import {
     Form
 } from "reactstrap"
 import axios from 'axios'
-
+import { useApi } from 'api/api'
 
 function Links(props) {
 
@@ -25,7 +25,7 @@ function Links(props) {
   const [ tasks, setTasks ] = useState([])
   const [ link, setLink ] = useState("")
   const [ title, setTitle ] = useState("")
-
+  const [api] = useApi()
   const {
     className
   } = props
@@ -37,7 +37,7 @@ function Links(props) {
   useEffect(()=> {
       (async()=>{
         try {
-          const res = await axios.get('http://localhost:4001/lessons')
+          const res = await axios.get(api+'/lessons')
           const data = res.data.data
           setTasks(data)
         } catch(err) {
@@ -48,7 +48,7 @@ function Links(props) {
 
     const submitForm = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:4001/new-lesson', {
+        axios.post(api+'/new-lesson', {
             data: {
                 link, 
                 title,
