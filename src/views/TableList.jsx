@@ -35,7 +35,6 @@ function Tables() {
 				const data = res.data.data
 				setStudents(data.students)
 				setAdmin(data.admins)
-				console.log(data)
 			} catch(err) {
 				console.log(err)
 			}

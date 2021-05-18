@@ -61,11 +61,11 @@ function UserProfile() {
 			return routes.map((prop, key) => {
 				if (prop.layout === "/user") {
 					return (
-						<Route
-						path={prop.layout + prop.path}
-						component={prop.component}
-						key={key}
-						/>
+						<Route path={prop.layout + prop.path} key={key}>
+							{
+								prop.name === 'UserChat' ? <prop.component role="user"></prop.component> : <prop.component />
+							}
+						</Route>
 						);
 					} else {
 						return null;

@@ -11,32 +11,78 @@ import {
 } from "reactstrap";
 // import axios from 'axios'
 import { useApi } from 'api/api' 
-export default function Chat() {
+export default function Chat({ role }) {
     
     const [addActive, setAddActive] = React.useState(false)
+    const [userId, setUserId] = React.useState('')
     const [api] = useApi()
-    
+    const [students, setStudents] = React.useState([])
+    const [info, setInfo] = React.useState({})
     React.useEffect(() => {
         ;(async()=>{
             const socket = openSocket(api, {transports: ['websocket']})
             if (api) {
-                console.log(api)
-                const res = await axios.get(api)
-                console.log(res.data)
+                // console.log(api)
+                // const res = await axios.get(api)
+                // console.log(res.data)
                 socket.on('connect', ()=>{
                     console.log('new connect')
+
+                    socket.on('receive', ({ message }) => {
+                        console.log( message )
+                    })
                 })
             }
         })()
       }, [api])
+    
+      const accessToken = window.localStorage.getItem('access_token')
 
-      function chatKeyboard (e) {
-          const socket = openSocket(api, {transports: ['websocket']})
-          if (e.keyCode === 13) {
-            socket.emit('new message', { message : e.target.value })
+    React.useEffect(()=>{
+        ;(async()=>{
+            if (api) {
+                try {
+                    if (role === 'admin') {
+                        const res = await axios.get(api + '/admin', {
+                            headers: {
+                                access_token: accessToken
+                            }
+                        })
+                        const data = res.data.data
+                        setInfo(data.info.admin_unique_id)
+                        setStudents(data.students)
+                    } else if(role === 'user'){
+                        const res = await axios.get(api + '/user', {
+                            headers: {
+                                access_token: accessToken
+                            }
+                        })
+                        const data = res.data.data
+                        setInfo(data.unique_id)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        })()
+    },[api, accessToken, role])
+
+    function getUserIdOnClick() {
+        const socket = openSocket(api, {transports: ['websocket']})
+        setUserId(info)
+        socket.emit('join', { username: info })
+    }
+
+
+
+    function chatKeyboard (e) {
+        const socket = openSocket(api, {transports: ['websocket']})
+        if (e.keyCode === 13) {
+            console.log(userId)
+            socket.emit('send_message', { username: userId, message : e.target.value })
             e.target.value = ''
-          }
-      }
+        }
+    }
 
     return (
         <>
@@ -48,16 +94,11 @@ export default function Chat() {
                                 <h3>Users List</h3>
                             </div>
                             <ul className="list-unstyled components">
-                                <p>Dummy Heading</p>
-                                <li>
-                                    About
-                                </li>
-                                <li>
-                                    Portfolio
-                                </li>
-                                <li>
-                                    Contact
-                                </li>
+                               {
+                                   students && students.map((val, key) => <li className="user-name" key={key}>
+                                    {val.user_name + " " + val.user_surname}
+                                   </li>)
+                               }
                             </ul>
                         </nav>
                         <div id="content" className="chat-content">
@@ -70,7 +111,9 @@ export default function Chat() {
                             </nav>
                             <div className="container-fluid">
                             <Row>
-                                <Col md="12" className="chat_body" style={{backgroundColor: '#fff'}}>
+                                <Col md="12" className="chat_body" onClick={() => {
+                                    getUserIdOnClick(info)
+                                }} style={{backgroundColor: '#fff'}}>
                                     <div className="text_wrapper">
                                         <div className="chat-messages">
                                             <div className="reciaved_msg">

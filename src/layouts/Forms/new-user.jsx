@@ -24,11 +24,6 @@ export default function CreateUser() {
     const [api] = useApi()
     const [username,setUsername] = React.useState('')
     const [password,setPassword] = React.useState('')
-    const [name,setName] = React.useState('')
-    const [surname,setSurname] = React.useState('')
-    const [birthday,setBirthday] = React.useState('')
-    const [lesson,setLesson] = React.useState('')
-    const [number,setNumber] = React.useState('')
     const [mentor,setMentor] = React.useState('')
     const [type,setType] = React.useState('')
 
@@ -49,22 +44,19 @@ export default function CreateUser() {
         e.preventDefault()
         ;(async()=>{
             const newUser = {
-                name,
-                surname,
-                birthday,
-                number,
-                mentor,
-                lesson,
+                mentor: mentor.toLowerCase(),
                 type,
                 username,
                 password
             }
 			try {
-                if (name.length && surname.length && birthday.length && number.length && mentor.length) {
+                if (mentor.length) {
                     const res = await axios.post(api + '/new-user', newUser)
                     const data = res.data
                     localStorage.setItem('access_token', data.token)
-                    window.location.href = '/user'
+                    if(localStorage.getItem('access_token')){
+                        window.location.href = '/user'
+                    }
                 }
 			} catch(err) {
 				console.log(err)
@@ -76,7 +68,7 @@ export default function CreateUser() {
         <>
             <div className="container">
                 <Row className="mt-5">
-                    <Col md="12" className="mx-auto">
+                    <Col md="8" className="mx-auto">
                         <Card>
                             <CardHeader className="mx-auto">
                                 <h3 className="title mb-0">Sign Up</h3>
@@ -84,61 +76,6 @@ export default function CreateUser() {
                             <CardBody>
                                 <Form onSubmit={SignUpForm}>
                                     <Row className="mx-auto">
-                                        <Col className="pr-md-3 mx-auto" md="12">
-                                            <FormGroup>
-                                                <label>Ismi:</label>
-                                                <Input
-                                                onKeyUp={(e)=> setName(e.target.value)}
-                                                defaultValue=""
-                                                placeholder="Boburmirzo"
-                                                type="text"
-                                                />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col className="pr-md-3 mx-auto" md="12">
-                                            <FormGroup>
-                                                <label>Familiya:</label>
-                                                <Input
-                                                onKeyUp={(e)=>setSurname(e.target.value)}
-                                                defaultValue=""
-                                                placeholder="Negmatov"
-                                                type="text"
-                                                />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col className="pr-md-3 mx-auto" md="12">
-                                            <FormGroup>
-                                                <label>Tug'ulgan kuni:</label>
-                                                <Input
-                                                onKeyUp={(e)=> setBirthday(e.target.value)}
-                                                defaultValue=""
-                                                placeholder="19/07/2000"
-                                                type="text"
-                                                />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col className="pr-md-3 mx-auto" md="12">
-                                            <FormGroup>
-                                            <Label for="exampleSelect">Dars soni:</Label>
-                                                <Input type="select" name="select" id="exampleSelect" onChange={e => setLesson(e.target.value)}>
-                                                    <option value="0">Tanlang</option>
-                                                {
-                                                    Array(72).fill('@').map((i,index)=> <option value={index+1} key={index}>{index+1} dars</option>)
-                                                }
-                                                </Input>
-                                            </FormGroup>
-                                        </Col>
-                                        <Col className="pr-md-3 mx-auto" md="12">
-                                            <FormGroup>
-                                                <label>Telefon raqam:</label>
-                                                <Input
-                                                onKeyUp={(e)=>setNumber(e.target.value)}
-                                                defaultValue=""
-                                                placeholder="+998998616951"
-                                                type="text"
-                                                />
-                                            </FormGroup>
-                                        </Col>
                                         <Col className="pr-md-3 mx-auto" md="12">
                                             <FormGroup>
                                                 <Label for="exampleSelect">Mentor ismi:</Label>

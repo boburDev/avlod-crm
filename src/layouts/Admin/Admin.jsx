@@ -60,11 +60,11 @@ function Admin() {
 			return routes.map((prop, key) => {
 				if (prop.layout === "/admin") {
 					return (
-						<Route
-						path={prop.layout + prop.path}
-						component={prop.component}
-						key={key}
-						/>
+						<Route path={prop.layout + prop.path} key={key}>
+							{
+								prop.name === 'UserChat' ? <prop.component role="admin"></prop.component> : <prop.component />
+							}
+						</Route>
 						);
 					} else {
 						return null;

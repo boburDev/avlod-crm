@@ -18,9 +18,6 @@ function Createmodal ({ toggle, className, modal }) {
     const [api] = useApi()
     const submitForm = (e) => {
         e.preventDefault()
-
-        console.log(date, title, body)
-
         axios.post(api+'/new-task', {
             data: {
                 date, 
@@ -41,11 +38,11 @@ function Createmodal ({ toggle, className, modal }) {
         <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>New product</ModalHeader>
             <ModalBody>
-                <Form onSubmit={(e) => submitForm(e)}>
+                <Form onSubmit={submitForm}>
                         <Label>Task date</Label>
                         <Input placeholder="23/08/12" onChange={e => setDate(e.target.value)} type="date" style={{"color": "black"}} name="select" />
                         <Label>Task title</Label>
-                        <Input maxLength="6" onKeyUp={e => setTitle(e.target.value)} placeholder="To do" type="text" style={{"color": "black"}} name="select" />
+                        <Input maxLength="999" onKeyUp={e => setTitle(e.target.value)} placeholder="To do" type="text" style={{"color": "black"}} name="select" />
                         <Label>Task definition</Label>
                         <Input maxLength="256" onKeyUp={e => setBody(e.target.value)} placeholder="Definition" type="textarea" style={{"color": "black"}} name="text" id="exampleText" />
                 <MatButton type="submit" style={{"margin": "0 auto", "marginTop": "50px", "marginBottom": "40px", "width": "100%"}} color="primary">Submit</MatButton>{' '}

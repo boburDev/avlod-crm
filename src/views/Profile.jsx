@@ -22,39 +22,62 @@ import { useApi } from 'api/api'
 export default function Profile() {
 
 	const [name,setName] = React.useState('')
+	const [username,setUsername] = React.useState('')
 	const [surname,setSurname] = React.useState('')
 	const [birthday,setBirthday] = React.useState('')
 	const [number,setNumber] = React.useState('')
 	const [lesson,setLesson] = React.useState('')
+
+
+	const [usernameRef, setUsernameRef] = React.useState()
+	const [surnameRef, setSurnameRef] = React.useState()
+	const [birthdayRef, setBirthdayRef] = React.useState()
+	const [numberRef, setNumberRef] = React.useState()
+
+
 	
 	const [api] = useApi()
 	const accessToken = window.localStorage.getItem('access_token')
 	React.useEffect(()=>{
 		;(async()=>{
 			try {
-					const res = await axios.get(api + '/user', {
-						headers: {
-							access_token: accessToken
-						}
-					})
-					const data = res.data
-					const dataObj = data.data
-					if (data && data.is_user) {
-						setName(dataObj.name)
-						setSurname(dataObj.surname)
-						setBirthday(dataObj.birthday)
-						setNumber(dataObj.number)
-						setLesson(dataObj.lesson)	
-					}else {
-						window.location.href = '/'
+				const res = await axios.get(api + '/user', {
+					headers: {
+						access_token: accessToken
 					}
+				})
+				const data = res.data
+				const dataObj = data.data
+				if (data && data.is_user) {
+					setName(dataObj.name)
+					setUsername(dataObj.username)
+					setSurname(dataObj.surname)
+					setBirthday(dataObj.birthday)
+					setNumber(dataObj.number)
+					setLesson(dataObj.lesson)	
+				}else {
+					window.location.href = '/'
+				}
 			} catch(err) {
 				console.log(err)
-        // window.location.href = '/'
-        // window.localStorage.removeItem('access_token')
 			}
 		})()
 	},[api, accessToken])
+	
+	async function submitForm (){
+		try {
+			const data = {
+				name: usernameRef,
+				surname: surnameRef,
+				birthday: birthdayRef,
+				number: numberRef,
+				username: username
+			}
+			await axios.post(api + '/update-user', data)
+		} catch(err) {
+			console.log(err)
+		}
+	}
 
 	const [filename, setFilename] = React.useState({ fileName: '', invalidFile: false })
 
@@ -86,7 +109,8 @@ export default function Profile() {
                           <FormGroup>
                             <label>Name:</label>
                             <Input
-							disabled
+							onKeyUp={e => setUsernameRef(e.target.value)}
+							disabled={name ? true : false}
                             placeholder={name}
                             type="text"
                             />
@@ -95,7 +119,7 @@ export default function Profile() {
                         <Col className="px-md-1" md="3">
                           <FormGroup>
                             <label>Surname:</label>
-                            <Input disabled
+                            <Input onKeyUp={e => setSurnameRef(e.target.value)} disabled={surname ? true : false}
                               placeholder={surname}
                               type="text"
                             />
@@ -106,7 +130,7 @@ export default function Profile() {
                             <label htmlFor="exampleInputEmail1">
                                 Tug'ulgan kuni:
                             </label>
-                            <Input disabled placeholder={birthday} type="date" />
+                            <Input onKeyUp={e => setBirthdayRef(e.target.value)} disabled={birthday ? true : false} placeholder={birthday} type="date" />
                           </FormGroup>
                         </Col>
                       </Row>
@@ -114,7 +138,7 @@ export default function Profile() {
                         <Col className="pr-md-1" md="6">
                             <FormGroup>
                                 <label>Telefon raqam:</label>
-                                <Input disabled
+                                <Input onKeyUp={e => setNumberRef(e.target.value)} disabled={number ? true : false}
                                 defaultValue=""
                                 placeholder={number}
                                 type="text"
@@ -164,7 +188,7 @@ export default function Profile() {
                     </Form>
                   </CardBody>
                   <CardFooter>
-                    <Button className="btn-fill" color="primary" type="submit">
+                    <Button className="btn-fill" color="primary" type="submit" onClick={submitForm}>
                       Save
                     </Button>
                   </CardFooter>
@@ -189,7 +213,7 @@ export default function Profile() {
 						height="100"
                       />
 					  
-                      <h5 className="title">{'' || 'Mike Andrew'}</h5>
+                      <h5 className="title">{username}</h5>
                     </a>
                     <p className="description">{'' || 'On Process...'}</p>
                   </div>

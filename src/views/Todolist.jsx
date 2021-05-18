@@ -69,7 +69,6 @@ function Tables(props) {
                         <th>Task</th>
                         <th>EDIT TASK</th>
                         <th>Delete TASK</th>
-                        <th>Created date</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -80,7 +79,6 @@ function Tables(props) {
 						  <td>{el.task_body}</td>
 						  <td><MatButton color="info">EDIT</MatButton></td>
 						  <td><MatButton color="danger">DELETE</MatButton></td>
-						  <td>{el.task_date}</td>
 						  </tr>)
 					  }
                     </tbody>
